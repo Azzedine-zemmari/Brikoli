@@ -46,4 +46,6 @@ public class Mission {
     @JoinColumn(name = "client_id")
     private ClientProfile client;
 
+    @OneToMany(mappedBy = "mission")
+    private List<Application> applications;
 }

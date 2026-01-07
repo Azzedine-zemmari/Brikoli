@@ -42,4 +42,8 @@ public class ProfessionalProfile {
 
    @OneToMany(mappedBy = "professional")
     private List<Review> reviews;
+
+   @OneToMany(mappedBy = "professional")
+    private List<Application> applications;
+
 }
