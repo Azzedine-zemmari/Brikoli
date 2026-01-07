@@ -51,4 +51,7 @@ public class Mission {
 
     @OneToOne
     private Category category;
+
+    @OneToMany(mappedBy = "mission")
+    private List<Message> messages;
 }
