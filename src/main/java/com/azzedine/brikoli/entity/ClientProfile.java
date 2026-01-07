@@ -28,4 +28,8 @@ public class ClientProfile {
 
     @OneToMany(mappedBy = "client")
     private List<Review> reviews;
+
+    @OneToMany(mappedBy = "client")
+    private List<Mission> missions;
+
 }

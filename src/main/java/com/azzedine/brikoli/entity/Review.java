@@ -13,6 +13,9 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames = "mission_id")
+)
 public class Review {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -24,12 +27,17 @@ public class Review {
 
     private LocalDateTime created_at;
 
-    @ManyToOne
-    @JoinColumn(name = "professional_id")
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="mission_id",nullable = false)
+    private Mission mission;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "professional_id",nullable = false)
     private ProfessionalProfile professional;
 
-    @ManyToOne
-    @JoinColumn(name="client_id")
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="client_id",nullable = false)
     private ClientProfile client;
+
 
 }
