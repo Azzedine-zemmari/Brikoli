@@ -39,4 +39,7 @@ public class ProfessionalProfile {
    @OneToOne
    @JoinColumn(name="user_id")
    private User user;
+
+   @OneToMany(mappedBy = "professional")
+    private List<Review> reviews;
 }

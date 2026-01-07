@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -23,4 +25,7 @@ public class ClientProfile {
     @OneToOne
     @JoinColumn(name="user_id")
     private User user;
+
+    @OneToMany(mappedBy = "client")
+    private List<Review> reviews;
 }
