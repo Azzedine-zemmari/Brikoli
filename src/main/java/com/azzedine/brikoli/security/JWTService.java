@@ -43,4 +43,8 @@ public class JWTService {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
+    public String extractUsername(String token) {
+        return extractAllClaims(token).getSubject();
+    }
 }
