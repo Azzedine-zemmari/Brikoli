@@ -47,4 +47,9 @@ public class JWTService {
     public String extractUsername(String token) {
         return extractAllClaims(token).getSubject();
     }
+
+    
+    public String extractRole(String token){
+        return extractAllClaims(token).get("role",String.class);
+    }
 }
