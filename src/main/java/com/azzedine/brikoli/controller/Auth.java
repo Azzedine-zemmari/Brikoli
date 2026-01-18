@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.azzedine.brikoli.dto.RegisterDto;
+import com.azzedine.brikoli.dto.RequestLoginDto;
+import com.azzedine.brikoli.dto.ResponseLoginDto;
 import com.azzedine.brikoli.services.auth.UserService;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +24,11 @@ public class Auth {
     public ResponseEntity<String> register(@RequestBody RegisterDto dto){
         userService.userRegister(dto);
         return ResponseEntity.ok("register done");
+    }
+    @PostMapping("/login")
+    public ResponseEntity<ResponseLoginDto> login(@RequestBody RequestLoginDto dto){
+        ResponseLoginDto result =  userService.login(dto);
+        return ResponseEntity.ok(result);
     }
 
 }
