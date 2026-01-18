@@ -52,4 +52,13 @@ public class JWTService {
     public String extractRole(String token){
         return extractAllClaims(token).get("role",String.class);
     }
+
+    public boolean isTokenValid(String token) {
+        try {
+            extractAllClaims(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
