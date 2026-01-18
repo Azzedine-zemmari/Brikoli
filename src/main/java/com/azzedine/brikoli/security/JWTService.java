@@ -4,6 +4,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import java.util.Date;
 import io.jsonwebtoken.security.Keys;
@@ -32,5 +33,14 @@ public class JWTService {
         .expiration(new Date(System.currentTimeMillis() + expiration))
         .signWith(Keys.hmacShaKeyFor(SECRET_KEY.getBytes()))
         .compact();
+    }
+
+       // helper
+    private Claims extractAllClaims(String token){
+        return Jwts.parser()
+                .setSigningKey(Keys.hmacShaKeyFor(SECRET_KEY.getBytes()))
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
