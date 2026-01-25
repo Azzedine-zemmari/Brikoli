@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Brikoli - Authentification</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d93f2",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101b22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="font-display bg-background-light dark:bg-background-dark text-[#0d161c] dark:text-white antialiased overflow-x-hidden">
+    <div class="min-h-screen flex flex-col lg:flex-row">
+        <!-- Left Section: Form -->
+        <div
+            class="flex-1 flex flex-col justify-center px-4 py-8 sm:px-6 lg:flex-none lg:px-20 xl:px-24 w-full lg:w-[600px] xl:w-[700px] bg-white dark:bg-[#15232d] z-10 shadow-xl">
+            <div class="mx-auto w-full max-w-sm lg:w-96">
+                <!-- Header/Logo Area -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-3 text-[#0d161c] dark:text-white">
+                        <div class="size-8 text-primary">
+                            <svg class="w-full h-full" fill="none" viewbox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold tracking-tight">Brikoli</h2>
+                    </div>
+                    <div class="flex gap-4">
+                        <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400"
+                            href="#">Français</a>
+                    </div>
+                </div>
+                <!-- Tabs -->
+                <div class="mb-8 border-b border-gray-200 dark:border-gray-700">
+                    <nav aria-label="Tabs" class="-mb-px flex space-x-8">
+                        <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium"
+                            href="#">
+                            Se connecter
+                        </a>
+                        <a aria-current="page"
+                            class="border-primary text-primary whitespace-nowrap border-b-2 py-4 px-1 text-sm font-bold"
+                            href="#">
+                            S'inscrire
+                        </a>
+                    </nav>
+                </div>
+                <!-- Main Headline -->
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">Créez votre
+                        compte</h2>
+                    <p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                        Rejoignez la communauté de missions intelligentes au Maroc.
+                    </p>
+                </div>
+                <!-- Role Selection -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white mb-3">Je
+                        suis...</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Client Option -->
+                        <div
+                            class="relative flex cursor-pointer rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a2c38] p-4 shadow-sm hover:border-primary/50 focus:outline-none transition-all group">
+                            <div class="flex flex-col gap-2">
+                                <span
+                                    class="material-symbols-outlined text-gray-400 group-hover:text-primary">person</span>
+                                <div>
+                                    <span
+                                        class="block text-sm font-semibold text-gray-900 dark:text-white">Client</span>
+                                    <span class="block text-xs text-gray-500">Je cherche un service</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Professional Option (Selected State) -->
+                        <div
+                            class="relative flex cursor-pointer rounded-xl border-2 border-primary bg-primary/5 dark:bg-primary/10 p-4 shadow-sm focus:outline-none transition-all">
+                            <div class="absolute -top-2 -right-2 bg-primary text-white rounded-full p-0.5">
+                                <span class="material-symbols-outlined text-[16px]">check</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="material-symbols-outlined text-primary">engineering</span>
+                                <div>
+                                    <span class="block text-sm font-bold text-primary">Professionnel</span>
+                                    <span class="block text-xs text-primary/80">Je propose mes services</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Fields -->
+                <form action="#" class="space-y-5" method="POST">
+                    <!-- Name -->
+                    <div>
+                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white" for="name">Nom
+                            complet</label>
+                        <div class="mt-2 relative">
+                            <input
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
+                                id="name" name="name" required="" type="text" />
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                            for="email">Adresse email</label>
+                        <div class="mt-2">
+                            <input autocomplete="email"
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
+                                id="email" name="email" required="" type="email" />
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div>
+                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                            for="password">Mot de passe</label>
+                        <div class="mt-2 relative">
+                            <input
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
+                                id="password" name="password" required="" type="password" />
+                        </div>
+                    </div>
+                    <!-- Diplômé Checkbox (Visible because Pro is selected) -->
+                    <div
+                        class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                        <div class="relative flex items-start">
+                            <div class="flex h-6 items-center">
+                                <input aria-describedby="diplome-description"
+                                    class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700"
+                                    id="diplome" name="diplome" type="checkbox" />
+                            </div>
+                            <div class="ml-3 text-sm leading-6">
+                                <label class="font-medium text-gray-900 dark:text-white flex items-center gap-1"
+                                    for="diplome">
+                                    Je suis un professionnel diplômé / certifié
+                                    <span class="material-symbols-outlined text-base text-yellow-500"
+                                        title="Badge vérifié">verified</span>
+                                </label>
+                                <p class="text-gray-500 dark:text-gray-400 text-xs mt-1" id="diplome-description">
+                                    Obtenez un badge de vérification pour augmenter la confiance de vos clients.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <div>
+                        <button
+                            class="flex w-full justify-center rounded-lg bg-primary px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors"
+                            type="button">
+                            S'inscrire
+                        </button>
+                    </div>
+                </form>
+                <!-- Social Auth -->
+                <div class="mt-8">
+                    <div class="relative">
+                        <div aria-hidden="true" class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm font-medium leading-6">
+                            <span class="bg-white px-6 text-gray-500 dark:bg-[#15232d] dark:text-gray-400">Ou continuer
+                                avec</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 gap-4">
+                        <a class="flex w-full items-center justify-center gap-3 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white dark:hover:bg-[#233544]"
+                            href="#">
+                            <svg aria-hidden="true" class="h-5 w-5" viewbox="0 0 24 24">
+                                <path
+                                    d="M12.0003 20.45c4.6667 0 8.45-3.7833 8.45-8.45 0-4.6667-3.7833-8.45-8.45-8.45-4.6667 0-8.45 3.7833-8.45 8.45 0 4.6667 3.7833 8.45 8.45 8.45Z"
+                                    fill="#fff"></path>
+                                <path
+                                    d="M20.45 12c0-4.6667-3.7833-8.45-8.45-8.45-4.6667 0-8.45 3.7833-8.45 8.45 0 4.6667 3.7833 8.45 8.45 8.45 4.6667 0 8.45-3.7833 8.45-8.45Z"
+                                    fill="none" stroke="#AAB4BA" stroke-miterlimit="10"></path>
+                                <path
+                                    d="M20.2 10.6167h-8.2v2.65h4.7833c-.2333 1.15-.9 2.1333-1.8833 2.7667l2.95 2.2833c1.7833-1.6333 2.8167-4.0667 2.35-7.7Z"
+                                    fill="#4285F4"></path>
+                                <path
+                                    d="M12.0002 18.95c2.2166 0 4.1166-.7333 5.5666-2.0167l-2.85-2.2833c-3.1333 1.95-7.3.3167-8.1166-3.2667H3.4835V13.6c1.55 3.1667 4.7667 5.35 8.5167 5.35Z"
+                                    fill="#34A853"></path>
+                                <path
+                                    d="M6.6001 11.3833c-.2-1.0333-.1167-2.1.25-3.0833V6.0666H3.5834c-2.3 4.5667-.85 10.2334 3.0167 11.95l-.0001-6.6333Z"
+                                    fill="#FBBC05"></path>
+                                <path
+                                    d="M12.0001 5.05c1.1667-.0167 2.2833.4 3.1333 1.1667l2.25-2.25c-2.5833-2.3667-6.55-2.7-9.4666-1.0833L10.7001 5.2c.4-.1.8167-.15 1.3-.15Z"
+                                    fill="#EA4335"></path>
+                            </svg>
+                            <span class="text-sm font-semibold leading-6">Google</span>
+                        </a>
+                        <a class="flex w-full items-center justify-center gap-3 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white dark:hover:bg-[#233544]"
+                            href="#">
+                            <svg aria-hidden="true" class="h-5 w-5 text-[#1877F2]" fill="currentColor"
+                                viewbox="0 0 24 24">
+                                <path clip-rule="evenodd"
+                                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-sm font-semibold leading-6">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Footer links -->
+                <p class="mt-8 text-center text-xs text-gray-500 dark:text-gray-400">
+                    En continuant, vous acceptez nos
+                    <a class="font-semibold text-primary hover:text-primary/80" href="#">Conditions d'utilisation</a>
+                    et notre
+                    <a class="font-semibold text-primary hover:text-primary/80" href="#">Politique de
+                        confidentialité</a>.
+                </p>
+            </div>
+        </div>
+        <!-- Right Section: Image -->
+        <div class="relative hidden flex-1 lg:block">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10 flex flex-col justify-end p-20">
+                <blockquote class="space-y-2">
+                    <p class="text-lg font-medium text-white">
+                        “Brikoli a transformé la façon dont je trouve des missions. C'est rapide, fiable et sécurisé. Je
+                        recommande vivement aux professionnels marocains.”
+                    </p>
+                    <footer class="text-sm text-gray-300 font-medium">— Youssef El Mansouri, Électricien à Casablanca
+                    </footer>
+                </blockquote>
+            </div>
+            <img alt="" class="absolute inset-0 h-full w-full object-cover"
+                data-alt="Close up of a professional electrician working with tools on a circuit"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW8yCDVtNgb6OhTnilw7QcEODo8nWRVzVjbvM8rvKNEM0n-gEylA78DDm_KYC61keX0UHMZgD_wqVmbF3IeV-gEGcp3odrO3_GPUUelx9tQCl53p903Mpyu61kHJ5PZADoAG74V-TuKjI4Fp82gn31Qld3FOsxINcAbatE84gtRIk0CTnL_MeBHr8AHu74dygmrJ4pB5JJPrLjvtVIm7fObOjtUPk46oqE4AgGD2kG7LWKIwQ4MV7eFIa8QTTUWRpkjvTxGTl2x3xe" />
+        </div>
+    </div>
+</body>
+
+</html>
