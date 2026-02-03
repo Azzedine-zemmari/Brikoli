@@ -11,9 +11,12 @@ import com.azzedine.brikoli.dto.RegisterDto;
 import com.azzedine.brikoli.dto.RequestLoginDto;
 import com.azzedine.brikoli.dto.ResponseLoginDto;
 import com.azzedine.brikoli.mapper.RegisterDtoMapper;
+import com.azzedine.brikoli.repository.ProfessionalRepository;
 import com.azzedine.brikoli.repository.UserRepository;
 import com.azzedine.brikoli.security.JWTService;
+import com.azzedine.brikoli.entity.ProfessionalProfile;
 import com.azzedine.brikoli.entity.User;
+import com.azzedine.brikoli.enums.Role;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +31,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JWTService jwtService;
+    private final ProfessionalRepository professionalRepository;
 
 
 
@@ -45,8 +49,19 @@ public class UserServiceImpl implements UserService {
         String hash = passwordEncoder.encode(dto.password());
 
         user.setPassword(hash);
-
+        
         userRepository.save(user);
+        if(user.getRole() == Role.PROFESSIONAL){
+            ProfessionalProfile professional = new ProfessionalProfile();
+            professional.setBio("");
+            professional.setLocation("");
+            professional.setIsGraduated(dto.graduated() != null ? dto.graduated() : false);
+            professional.setCompletedMission(0);
+            professional.setRatingAverage(0.0);
+            professional.setUser(user);
+            professionalRepository.save(professional);
+        }
+
 
     }
     @Override
@@ -69,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
         // get user entity
         User user = userRepository.findByEmail(dto.email()).orElseThrow(()-> new RuntimeException("user not found"));
-
+        
 //        UserDto userDto = userDtoMapper.userToDto(user);
 
         return new ResponseLoginDto(token);
