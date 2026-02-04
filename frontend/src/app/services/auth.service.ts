@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { AuthResponse } from "../interfaces/AuthResponse";
 import { environment } from '../environment';
 import { Injectable } from '@angular/core';
+import { RegisterDto } from '../interfaces/RegisterDto';
 
 
 
@@ -18,7 +19,7 @@ export class AuthService{
         return this.http.post<AuthResponse>(`${environment.apiUrl}/api/user/login`,loginData)
     }
 
-    register(registerData:any){
+    register(registerData:RegisterDto){
         return this.http.post<any>(`${environment.apiUrl}/api/user/register`,registerData)
     }
     

@@ -22,12 +22,12 @@ export class Register {
   ) {
     this.registerForm = this.fb.group({
       role: ['', Validators.required],
-      name: ['', Validators.required],
-      prenom: ['', Validators.required],
-      tel:['', Validators.required ],
+      lastName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      phone:['', Validators.required ],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      diplome: [false]
+      graduated: [false]
     });
   }
   onSubmit(){
