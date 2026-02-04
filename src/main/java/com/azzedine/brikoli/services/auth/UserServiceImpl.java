@@ -11,9 +11,14 @@ import com.azzedine.brikoli.dto.RegisterDto;
 import com.azzedine.brikoli.dto.RequestLoginDto;
 import com.azzedine.brikoli.dto.ResponseLoginDto;
 import com.azzedine.brikoli.mapper.RegisterDtoMapper;
+import com.azzedine.brikoli.repository.ClientRepository;
 import com.azzedine.brikoli.repository.ProfessionalRepository;
 import com.azzedine.brikoli.repository.UserRepository;
 import com.azzedine.brikoli.security.JWTService;
+
+import jakarta.transaction.Transactional;
+
+import com.azzedine.brikoli.entity.ClientProfile;
 import com.azzedine.brikoli.entity.ProfessionalProfile;
 import com.azzedine.brikoli.entity.User;
 import com.azzedine.brikoli.enums.Role;
@@ -32,11 +37,12 @@ public class UserServiceImpl implements UserService {
     private final AuthenticationManager authenticationManager;
     private final JWTService jwtService;
     private final ProfessionalRepository professionalRepository;
-
+    private final ClientRepository clientRepository;
 
 
 
     @Override
+    @Transactional
     public void userRegister(RegisterDto dto){
         User user = registerDtoMapper.dtoToUser(dto);
 
@@ -61,8 +67,13 @@ public class UserServiceImpl implements UserService {
             professional.setUser(user);
             professionalRepository.save(professional);
         }
-
-
+        else{
+            ClientProfile clientProfile = new ClientProfile();
+            clientProfile.setUser(user);
+            clientProfile.setAddress("");
+            clientProfile.setCity("");
+            clientRepository.save(clientProfile);
+        }
     }
     @Override
   public ResponseLoginDto login(RequestLoginDto dto) {
