@@ -47,7 +47,7 @@
                 </div>
 
                 <!-- Login Form -->
-                <form id="loginForm" class="space-y-5">
+                <form [formGroup]="loginForm" (ngSubmit) = "onSubmit()" id="loginForm" class="space-y-5">
                     <!-- Email -->
                     <div>
                         <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
@@ -55,7 +55,7 @@
                         <div class="mt-2">
                             <input autocomplete="email"
                                 class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
-                                id="email" name="email" required type="email" placeholder="votre@email.com" />
+                                id="email" formControlName="email" required type="email" placeholder="votre@email.com" />
                         </div>
                     </div>
 
@@ -71,19 +71,19 @@
                         <div class="mt-2 relative">
                             <input
                                 class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
-                                id="password" name="password" required type="password" placeholder="••••••••" />
+                                id="password" formControlName="password" required type="password" placeholder="••••••••" />
                         </div>
                     </div>
 
                     <!-- Remember Me -->
-                    <div class="flex items-center">
+                    <!-- <div class="flex items-center">
                         <input
                             class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700"
                             id="remember-me" name="remember-me" type="checkbox" />
                         <label class="ml-3 block text-sm leading-6 text-gray-900 dark:text-white" for="remember-me">
                             Se souvenir de moi
                         </label>
-                    </div>
+                    </div> -->
 
                     <!-- Submit Button -->
                     <div>
