@@ -57,15 +57,15 @@
 </head>
 
 <body
-    class="font-display bg-background-light dark:bg-background-dark text-[#0d161c] dark:text-white antialiased overflow-x-hidden">
+    class="font-display bg-background-light text-[#0d161c] antialiased overflow-x-hidden">
     <div class="min-h-screen flex flex-col lg:flex-row">
         <!-- Left Section: Form -->
         <div
-            class="flex-1 flex flex-col justify-center px-4 py-8 sm:px-6 lg:flex-none lg:px-20 xl:px-24 w-full lg:w-[600px] xl:w-[700px] bg-white dark:bg-[#15232d] z-10 shadow-xl">
+            class="flex-1 flex flex-col justify-center px-4 py-8 sm:px-6 lg:flex-none lg:px-20 xl:px-24 w-full lg:w-[600px] xl:w-[700px] bg-white z-10 shadow-xl">
             <div class="mx-auto w-full max-w-sm lg:w-96">
                 <!-- Header/Logo Area -->
                 <div class="flex items-center justify-between mb-8">
-                    <div class="flex items-center gap-3 text-[#0d161c] dark:text-white">
+                    <div class="flex items-center gap-3 text-[#0d161c]">
                         <div class="size-8 text-primary">
                             <svg class="w-full h-full" fill="none" viewbox="0 0 48 48"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -77,139 +77,144 @@
                         <h2 class="text-2xl font-bold tracking-tight">Brikoli</h2>
                     </div>
                     <div class="flex gap-4">
-                        <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400"
+                        <a class="text-sm font-medium text-gray-500 hover:text-primary"
                             href="#">Français</a>
                     </div>
                 </div>
 
                 <!-- Tabs -->
-                <div class="mb-8 border-b border-gray-200 dark:border-gray-700">
+                <div class="mb-8 border-b border-gray-200">
                     <nav aria-label="Tabs" class="-mb-px flex space-x-8">
-                        <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium"
-                            href="#">
+
+                        <a routerLink="/login" routerLinkActive="border-primary text-primary font-bold" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700
+             whitespace-nowrap
+             border-b-2 py-4 px-1 text-sm font-medium">
                             Se connecter
                         </a>
-                        <a aria-current="page"
-                            class="border-primary text-primary whitespace-nowrap border-b-2 py-4 px-1 text-sm font-bold"
-                            href="#">
+
+                        <a routerLink="/register" routerLinkActive="border-primary text-primary font-bold" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700
+             whitespace-nowrap
+             border-b-2 py-4 px-1 text-sm font-medium">
                             S'inscrire
                         </a>
+
                     </nav>
                 </div>
 
+
                 <!-- Main Headline -->
                 <div class="mb-6">
-                    <h2 class="text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">Créez votre
+                    <h2 class="text-2xl font-bold leading-9 tracking-tight text-gray-900">Créez votre
                         compte</h2>
-                    <p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                    <p class="mt-2 text-sm leading-6 text-gray-500">
                         Rejoignez la communauté de missions intelligentes au Maroc.
                     </p>
                 </div>
 
                 <!-- Form Fields -->
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-5">
-                    
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-5">
+
                     <!-- Role Selection - SIMPLIFIED WITH SELECT -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white mb-2" for="role">
+                        <label class="block text-sm font-medium leading-6 text-gray-900 mb-2"
+                            for="role">
                             Je suis...
                         </label>
                         <div class="custom-select-wrapper">
-                            <select
-                                id="role"
-                                formControlName="role"
-                                required
-                                class="custom-select block w-full rounded-lg border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary text-sm leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white cursor-pointer">
+                            <select id="role" formControlName="role" required
+                                class="custom-select block w-full rounded-lg border-0 py-3 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary text-sm leading-6 cursor-pointer">
                                 <option value="">Sélectionnez votre rôle</option>
                                 <option value="CLIENT">👤 Client - Je cherche un service</option>
                                 <option value="PROFESSIONAL">🔧 Professionnel - Je propose mes services</option>
                             </select>
                         </div>
-                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                        <p class="mt-1 text-xs text-gray-500">
                             Choisissez comment vous souhaitez utiliser Brikoli
                         </p>
                     </div>
 
                     <!-- Name -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                        <label class="block text-sm font-medium leading-6 text-gray-900"
                             for="name">Nom</label>
                         <div class="mt-2 relative">
                             <input
-                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                                 id="name" formControlName="lastName" required type="text" />
                         </div>
                     </div>
 
                     <!-- Prenom -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                        <label class="block text-sm font-medium leading-6 text-gray-900"
                             for="prenom">Prénom</label>
                         <div class="mt-2 relative">
                             <input
-                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                                 id="prenom" formControlName="firstName" required type="text" />
                         </div>
                     </div>
 
                     <!-- Phone -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                        <label class="block text-sm font-medium leading-6 text-gray-900"
                             for="tel">Téléphone</label>
                         <div class="mt-2 relative">
                             <input
-                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                                 id="tel" formControlName="phone" required type="tel" placeholder="+212 6XX XXX XXX" />
                         </div>
                     </div>
 
                     <!-- Email -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                        <label class="block text-sm font-medium leading-6 text-gray-900"
                             for="email">Adresse email</label>
                         <div class="mt-2">
                             <input autocomplete="email"
-                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
-                                id="email" formControlName="email" required type="email" placeholder="votre@email.com" />
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                                id="email" formControlName="email" required type="email"
+                                placeholder="votre@email.com" />
                         </div>
                     </div>
 
                     <!-- Password -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                        <label class="block text-sm font-medium leading-6 text-gray-900"
                             for="password">Mot de passe</label>
                         <div class="mt-2 relative">
                             <input
-                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
-                                id="password" formControlName="password" required type="password" placeholder="••••••••" />
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                                id="password" formControlName="password" required type="password"
+                                placeholder="••••••••" />
                         </div>
-                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                        <p class="mt-1 text-xs text-gray-500">
                             Minimum 8 caractères
                         </p>
                     </div>
 
                     <!-- Diplômé Checkbox (Visible only for professionals) -->
-<div *ngIf="registerForm.get('role')?.value === 'PROFESSIONAL'"
-     class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
-  <div class="relative flex items-start">
-    <div class="flex h-6 items-center">
-      <input aria-describedby="diplome-description"
-             class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700"
-             id="diplome"
-             type="checkbox"
-             formControlName="graduated" />
-    </div>
-    <div class="ml-3 text-sm leading-6">
-      <label class="font-medium text-gray-900 dark:text-white flex items-center gap-1" for="diplome">
-        Je suis un professionnel diplômé / certifié
-        <span class="material-symbols-outlined text-base text-yellow-500" title="Badge vérifié">verified</span>
-      </label>
-      <p class="text-gray-500 dark:text-gray-400 text-xs mt-1" id="diplome-description">
-        Obtenez un badge de vérification pour augmenter la confiance de vos clients.
-      </p>
-    </div>
-  </div>
-</div>
+                    <div *ngIf="registerForm.get('role')?.value === 'PROFESSIONAL'"
+                        class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                        <div class="relative flex items-start">
+                            <div class="flex h-6 items-center">
+                                <input aria-describedby="diplome-description"
+                                    class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                    id="diplome" type="checkbox" formControlName="graduated" />
+                            </div>
+                            <div class="ml-3 text-sm leading-6">
+                                <label class="font-medium text-gray-900 flex items-center gap-1"
+                                    for="diplome">
+                                    Je suis un professionnel diplômé / certifié
+                                    <span class="material-symbols-outlined text-base text-yellow-500"
+                                        title="Badge vérifié">verified</span>
+                                </label>
+                                <p class="text-gray-500 text-xs mt-1" id="diplome-description">
+                                    Obtenez un badge de vérification pour augmenter la confiance de vos clients.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Submit Button -->
                     <div>
@@ -225,15 +230,15 @@
                 <div class="mt-8">
                     <div class="relative">
                         <div aria-hidden="true" class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                            <div class="w-full border-t border-gray-200"></div>
                         </div>
                         <div class="relative flex justify-center text-sm font-medium leading-6">
-                            <span class="bg-white px-6 text-gray-500 dark:bg-[#15232d] dark:text-gray-400">Ou
+                            <span class="bg-white px-6 text-gray-500">Ou
                                 continuer avec</span>
                         </div>
                     </div>
                     <div class="mt-6 grid grid-cols-2 gap-4">
-                        <a class="flex w-full items-center justify-center gap-3 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white dark:hover:bg-[#233544]"
+                        <a class="flex w-full items-center justify-center gap-3 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                             href="#">
                             <svg aria-hidden="true" class="h-5 w-5" viewbox="0 0 24 24">
                                 <path
@@ -257,7 +262,7 @@
                             </svg>
                             <span class="text-sm font-semibold leading-6">Google</span>
                         </a>
-                        <a class="flex w-full items-center justify-center gap-3 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white dark:hover:bg-[#233544]"
+                        <a class="flex w-full items-center justify-center gap-3 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                             href="#">
                             <svg aria-hidden="true" class="h-5 w-5 text-[#1877F2]" fill="currentColor"
                                 viewbox="0 0 24 24">
@@ -271,7 +276,7 @@
                 </div>
 
                 <!-- Footer links -->
-                <p class="mt-8 text-center text-xs text-gray-500 dark:text-gray-400">
+                <p class="mt-8 text-center text-xs text-gray-500">
                     En continuant, vous acceptez nos
                     <a class="font-semibold text-primary hover:text-primary/80" href="#">Conditions
                         d'utilisation</a>
@@ -282,22 +287,22 @@
             </div>
         </div>
 
-        <!-- Right Section: Image -->
-        <div class="relative hidden flex-1 lg:block">
-            <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10 flex flex-col justify-end p-20">
-                <blockquote class="space-y-2">
-                    <p class="text-lg font-medium text-white">
-                        "Brikoli a transformé la façon dont je trouve des missions. C'est rapide, fiable et sécurisé.
-                        Je recommande vivement aux professionnels marocains."
-                    </p>
-                    <footer class="text-sm text-gray-300 font-medium">— Youssef El Mansouri, Électricien à Casablanca
-                    </footer>
-                </blockquote>
-            </div>
-            <img alt="" class="absolute inset-0 h-full w-full object-cover"
-                data-alt="Close up of a professional electrician working with tools on a circuit"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW8yCDVtNgb6OhTnilw7QcEODo8nWRVzVjbvM8rvKNEM0n-gEylA78DDm_KYC61keX0UHMZgD_wqVmbF3IeV-gEGcp3odrO3_GPUUelx9tQCl53p903Mpyu61kHJ5PZADoAG74V-TuKjI4Fp82gn31Qld3FOsxINcAbatE84gtRIk0CTnL_MeBHr8AHu74dygmrJ4pB5JJPrLjvtVIm7fObOjtUPk46oqE4AgGD2kG7LWKIwQ4MV7eFIa8QTTUWRpkjvTxGTl2x3xe" />
+         <!-- Right Section: Image -->
+    <div class="relative hidden flex-1 lg:block">
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10 flex flex-col justify-end p-20">
+            <blockquote class="space-y-2">
+                <p class="text-lg font-medium text-white">
+                    "Grâce à Brikoli, j'ai pu développer mon activité et toucher plus de clients. La plateforme
+                    est intuitive et les paiements sont sécurisés."
+                </p>
+                <footer class="text-sm text-gray-300 font-medium">— Fatima Zahra, Plombière à Rabat
+                </footer>
+            </blockquote>
+        </div>
+        <img alt="" class="absolute inset-0 h-full w-full object-cover"
+            data-alt="Professional plumber working on installation"
+            src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&h=900&fit=crop" />
         </div>
     </div>
 
