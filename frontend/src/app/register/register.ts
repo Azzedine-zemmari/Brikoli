@@ -36,6 +36,15 @@ export class Register {
     this.authService.register(this.registerForm.value).subscribe({
       next:(res) =>{
         console.log('Registration successful', res);
+        this.registerForm.reset({
+        role: '',       // default value for select
+        lastName: '',
+        firstName: '',
+        phone: '',
+        email: '',
+        password: '',
+        graduated: false  
+      });
       },
       error: (err) => {
         console.error('Registration failed', err);

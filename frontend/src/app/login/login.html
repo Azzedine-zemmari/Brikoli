@@ -1,0 +1,183 @@
+<div class="min-h-screen flex flex-col lg:flex-row">
+        <!-- Left Section: Form -->
+        <div
+            class="flex-1 flex flex-col justify-center px-4 py-8 sm:px-6 lg:flex-none lg:px-20 xl:px-24 w-full lg:w-[600px] xl:w-[700px] bg-white dark:bg-[#15232d] z-10 shadow-xl">
+            <div class="mx-auto w-full max-w-sm lg:w-96">
+                <!-- Header/Logo Area -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-3 text-[#0d161c] dark:text-white">
+                        <div class="size-8 text-primary">
+                            <svg class="w-full h-full" fill="none" viewbox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold tracking-tight">Brikoli</h2>
+                    </div>
+                    <div class="flex gap-4">
+                        <a class="text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400"
+                            href="#">Français</a>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="mb-8 border-b border-gray-200 dark:border-gray-700">
+                    <nav aria-label="Tabs" class="-mb-px flex space-x-8">
+                        <a aria-current="page"
+                            class="border-primary text-primary whitespace-nowrap border-b-2 py-4 px-1 text-sm font-bold"
+                            href="#">
+                            Se connecter
+                        </a>
+                        <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium"
+                            href="#">
+                            S'inscrire
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Main Headline -->
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">Bon retour
+                        parmi nous</h2>
+                    <p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                        Connectez-vous pour accéder à votre compte et gérer vos missions.
+                    </p>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="space-y-5">
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                            for="email">Adresse email</label>
+                        <div class="mt-2">
+                            <input autocomplete="email"
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
+                                id="email" name="email" required type="email" placeholder="votre@email.com" />
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <label class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                                for="password">Mot de passe</label>
+                            <a href="#" class="text-sm font-semibold text-primary hover:text-primary/80">
+                                Mot de passe oublié ?
+                            </a>
+                        </div>
+                        <div class="mt-2 relative">
+                            <input
+                                class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white"
+                                id="password" name="password" required type="password" placeholder="••••••••" />
+                        </div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="flex items-center">
+                        <input
+                            class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700"
+                            id="remember-me" name="remember-me" type="checkbox" />
+                        <label class="ml-3 block text-sm leading-6 text-gray-900 dark:text-white" for="remember-me">
+                            Se souvenir de moi
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <button
+                            class="flex w-full justify-center rounded-lg bg-primary px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors"
+                            type="submit">
+                            Se connecter
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Social Auth -->
+                <div class="mt-8">
+                    <div class="relative">
+                        <div aria-hidden="true" class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm font-medium leading-6">
+                            <span class="bg-white px-6 text-gray-500 dark:bg-[#15232d] dark:text-gray-400">Ou
+                                continuer avec</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 gap-4">
+                        <a class="flex w-full items-center justify-center gap-3 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white dark:hover:bg-[#233544]"
+                            href="#">
+                            <svg aria-hidden="true" class="h-5 w-5" viewbox="0 0 24 24">
+                                <path
+                                    d="M12.0003 20.45c4.6667 0 8.45-3.7833 8.45-8.45 0-4.6667-3.7833-8.45-8.45-8.45-4.6667 0-8.45 3.7833-8.45 8.45 0 4.6667 3.7833 8.45 8.45 8.45Z"
+                                    fill="#fff"></path>
+                                <path
+                                    d="M20.45 12c0-4.6667-3.7833-8.45-8.45-8.45-4.6667 0-8.45 3.7833-8.45 8.45 0 4.6667 3.7833 8.45 8.45 8.45 4.6667 0 8.45-3.7833 8.45-8.45Z"
+                                    fill="none" stroke="#AAB4BA" stroke-miterlimit="10"></path>
+                                <path
+                                    d="M20.2 10.6167h-8.2v2.65h4.7833c-.2333 1.15-.9 2.1333-1.8833 2.7667l2.95 2.2833c1.7833-1.6333 2.8167-4.0667 2.35-7.7Z"
+                                    fill="#4285F4"></path>
+                                <path
+                                    d="M12.0002 18.95c2.2166 0 4.1166-.7333 5.5666-2.0167l-2.85-2.2833c-3.1333 1.95-7.3.3167-8.1166-3.2667H3.4835V13.6c1.55 3.1667 4.7667 5.35 8.5167 5.35Z"
+                                    fill="#34A853"></path>
+                                <path
+                                    d="M6.6001 11.3833c-.2-1.0333-.1167-2.1.25-3.0833V6.0666H3.5834c-2.3 4.5667-.85 10.2334 3.0167 11.95l-.0001-6.6333Z"
+                                    fill="#FBBC05"></path>
+                                <path
+                                    d="M12.0001 5.05c1.1667-.0167 2.2833.4 3.1333 1.1667l2.25-2.25c-2.5833-2.3667-6.55-2.7-9.4666-1.0833L10.7001 5.2c.4-.1.8167-.15 1.3-.15Z"
+                                    fill="#EA4335"></path>
+                            </svg>
+                            <span class="text-sm font-semibold leading-6">Google</span>
+                        </a>
+                        <a class="flex w-full items-center justify-center gap-3 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent dark:bg-[#1a2c38] dark:ring-gray-700 dark:text-white dark:hover:bg-[#233544]"
+                            href="#">
+                            <svg aria-hidden="true" class="h-5 w-5 text-[#1877F2]" fill="currentColor"
+                                viewbox="0 0 24 24">
+                                <path clip-rule="evenodd"
+                                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-sm font-semibold leading-6">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Footer links -->
+                <p class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+                    Pas encore de compte ?
+                    <a class="font-semibold text-primary hover:text-primary/80" href="#">
+                        Créer un compte
+                    </a>
+                </p>
+
+                <p class="mt-4 text-center text-xs text-gray-500 dark:text-gray-400">
+                    En vous connectant, vous acceptez nos
+                    <a class="font-semibold text-primary hover:text-primary/80" href="#">Conditions
+                        d'utilisation</a>
+                    et notre
+                    <a class="font-semibold text-primary hover:text-primary/80" href="#">Politique de
+                        confidentialité</a>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Section: Image -->
+        <div class="relative hidden flex-1 lg:block">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10 flex flex-col justify-end p-20">
+                <blockquote class="space-y-2">
+                    <p class="text-lg font-medium text-white">
+                        "Grâce à Brikoli, j'ai pu développer mon activité et toucher plus de clients. La plateforme
+                        est intuitive et les paiements sont sécurisés."
+                    </p>
+                    <footer class="text-sm text-gray-300 font-medium">— Fatima Zahra, Plombière à Rabat
+                    </footer>
+                </blockquote>
+            </div>
+            <img alt="" class="absolute inset-0 h-full w-full object-cover"
+                data-alt="Professional plumber working on installation"
+                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&h=900&fit=crop" />
+        </div>
+    </div>
