@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule ,FormGroup} from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';   
 import { RouterLink,RouterModule   } from '@angular/router';    
@@ -37,8 +37,9 @@ export class Register {
     this.authService.register(this.registerForm.value).subscribe({
       next:(res) =>{
         console.log('Registration successful', res);
+        this.router.navigate(['/login']);
         this.registerForm.reset({
-        role: '',       // default value for select
+        role: '',       
         lastName: '',
         firstName: '',
         phone: '',
