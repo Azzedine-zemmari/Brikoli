@@ -1,6 +1,8 @@
 package com.azzedine.brikoli.services.mission;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -41,5 +43,13 @@ public class MissionServiceImpl implements MissionService {
 
         MissionRequestDto result = missionDtoMapper.entityToDto(mission);
         return result;
+    }
+
+    @Override
+    public List<MissionRequestDto> showAll(){
+        return missionRepository.findAll()
+        .stream()
+        .map(missionDtoMapper::entityToDto)
+        .toList();
     }
 }
