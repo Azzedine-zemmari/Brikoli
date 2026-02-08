@@ -12,6 +12,7 @@ import com.azzedine.brikoli.repository.MissionRepository;
 import com.azzedine.brikoli.entity.Category;
 import com.azzedine.brikoli.entity.ClientProfile;
 import com.azzedine.brikoli.entity.Mission;
+import com.azzedine.brikoli.enums.MissionStatus;
 import com.azzedine.brikoli.entity.ClientProfile;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +35,7 @@ public class MissionServiceImpl implements MissionService {
         mission.setClient(client);
         mission.setCategory(category);
         mission.setCreated_at(LocalDateTime.now());
+        mission.setMissionStatus(MissionStatus.POSTED);
 
         missionRepository.save(mission);
 

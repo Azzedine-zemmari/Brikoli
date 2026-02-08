@@ -49,7 +49,8 @@ public class Mission {
     @OneToMany(mappedBy = "mission")
     private List<Application> applications;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @OneToMany(mappedBy = "mission")
