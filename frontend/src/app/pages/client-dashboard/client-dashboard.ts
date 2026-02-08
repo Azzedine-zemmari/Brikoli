@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ClientAsideDashboard } from "../../components/client-aside-dashboard/client-aside-dashboard";
 import { MissionResponse } from '../../interfaces/MissionResponse';
 import { MissionService } from '../../services/mission.service';
-
+import { CommonModule, DatePipe } from '@angular/common';
 @Component({
   selector: 'app-client-dashboard',
-  imports: [ClientAsideDashboard],
+  imports: [ClientAsideDashboard,CommonModule],
   templateUrl: './client-dashboard.html',
   styleUrl: './client-dashboard.css',
 })
@@ -31,5 +31,8 @@ export class ClientDashboard {
         console.error(err);
       }
     })
+  }
+   trackById(index: number, mission: MissionResponse) {
+    return mission.id;
   }
 }
