@@ -6,4 +6,5 @@ public interface MissionService {
     MissionRequestDto createMission(MissionRequestDto dto);
     List<MissionRequestDto> showAll();
     List<MissionRequestDto> showUserMissions(String email);
+    void modifierMission(Long id,MissionRequestDto dto);
 }

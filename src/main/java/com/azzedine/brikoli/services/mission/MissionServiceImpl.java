@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.azzedine.brikoli.dto.MissionRequestDto;
@@ -50,6 +52,7 @@ public class MissionServiceImpl implements MissionService {
         return result;
     }
 
+    // for admin
     @Override
     public List<MissionRequestDto> showAll(){
         return missionRepository.findAll()
@@ -57,8 +60,9 @@ public class MissionServiceImpl implements MissionService {
         .map(missionDtoMapper::entityToDto)
         .toList();
     }
+
     @Override
-public List<MissionRequestDto> showUserMissions(String email){
+    public List<MissionRequestDto> showUserMissions(String email){
 
     User user = userRepository.findByEmail(email)
             .orElseThrow(() -> new RuntimeException("User not found"));
@@ -67,7 +71,38 @@ public List<MissionRequestDto> showUserMissions(String email){
             .stream()
             .map(missionDtoMapper::entityToDto)
             .toList();
-}
+    }
 
+    @Override
+    public void modifierMission(Long id,MissionRequestDto dto){
+        Authentication  authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
 
+        User authenticatedUser = userRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found")); 
+            
+        Mission mission = missionRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Mission not found"));
+
+        
+        if(!mission.getClient().getId().equals(authenticatedUser.getId())){
+            throw new RuntimeException("You are not allowed to modify this mission");
+        }
+        
+        mission.setTitle(dto.title());
+        mission.setDescription(dto.description());
+        mission.setLocation(dto.location());
+        mission.setUrgency(dto.urgency());
+        mission.setMissionStatus(dto.missionStatus());
+        mission.setBudgetMax(dto.budget_max());
+        mission.setBudgetMin(dto.budget_min());
+
+        if(dto.category_id() != null){
+            Category category = categoryRepository.findById(dto.category_id())
+                    .orElseThrow(() -> new RuntimeException("Category not found"));
+            mission.setCategory(category);
+        }
+
+        missionRepository.save(mission);
+    }
 }
