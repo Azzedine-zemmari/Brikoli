@@ -80,12 +80,15 @@ public class MissionServiceImpl implements MissionService {
 
         User authenticatedUser = userRepository.findByEmail(email)
             .orElseThrow(() -> new RuntimeException("User not found")); 
+
+        ClientProfile client = clientRepository.findByUserId(authenticatedUser.getId())
+            .orElseThrow(() -> new RuntimeException("Client not found"));
             
         Mission mission = missionRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Mission not found"));
 
         
-        if(!mission.getClient().getId().equals(authenticatedUser.getId())){
+        if(!mission.getClient().getId().equals(client.getId())){
             throw new RuntimeException("You are not allowed to modify this mission");
         }
         
@@ -93,7 +96,7 @@ public class MissionServiceImpl implements MissionService {
         mission.setDescription(dto.description());
         mission.setLocation(dto.location());
         mission.setUrgency(dto.urgency());
-        mission.setMissionStatus(dto.missionStatus());
+        mission.setMissionStatus(MissionStatus.POSTED);
         mission.setBudgetMax(dto.budget_max());
         mission.setBudgetMin(dto.budget_min());
 
@@ -104,5 +107,22 @@ public class MissionServiceImpl implements MissionService {
         }
 
         missionRepository.save(mission);
+    }
+
+    @Override
+    public Long countMission(MissionStatus status){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String email = authentication.getName();
+
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+        ClientProfile client = clientRepository
+            .findByUserId(user.getId())
+            .orElseThrow(() -> new RuntimeException("Client profile not found"));
+
+        return missionRepository
+            .countByMissionStatusAndClientId(status, client.getId());
     }
 }

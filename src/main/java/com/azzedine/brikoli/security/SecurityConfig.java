@@ -31,6 +31,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                         .requestMatchers("/api/user/register","/api/user/login").permitAll()
                         .requestMatchers("/api/mission/create").hasRole("CLIENT")
+                        .requestMatchers("/api/mission/user").hasRole("CLIENT")
+                        .requestMatchers("/api/mission/posted").hasRole("CLIENT")
+                        .requestMatchers("/api/mission/en_cours").hasRole("CLIENT")
+                        .requestMatchers("/api/mission/completed").hasRole("CLIENT")
+                        .requestMatchers(HttpMethod.PUT,"/api/mission/*").hasRole("CLIENT")
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
