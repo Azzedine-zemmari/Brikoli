@@ -3,6 +3,8 @@ package com.azzedine.brikoli.services.mission;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,13 @@ import com.azzedine.brikoli.mapper.MissionDtoMapper;
 import com.azzedine.brikoli.repository.CategoryRepository;
 import com.azzedine.brikoli.repository.ClientRepository;
 import com.azzedine.brikoli.repository.MissionRepository;
+import com.azzedine.brikoli.repository.UserRepository;
 import com.azzedine.brikoli.entity.Category;
 import com.azzedine.brikoli.entity.ClientProfile;
 import com.azzedine.brikoli.entity.Mission;
 import com.azzedine.brikoli.enums.MissionStatus;
 import com.azzedine.brikoli.entity.ClientProfile;
+import com.azzedine.brikoli.entity.User;
 
 import lombok.AllArgsConstructor;
 
@@ -26,6 +30,7 @@ public class MissionServiceImpl implements MissionService {
     private final MissionDtoMapper missionDtoMapper;
     private final ClientRepository clientRepository;
     private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
     @Override
     public MissionRequestDto createMission(MissionRequestDto dto){
         Mission mission = missionDtoMapper.dtoToMission(dto);
@@ -52,4 +57,17 @@ public class MissionServiceImpl implements MissionService {
         .map(missionDtoMapper::entityToDto)
         .toList();
     }
+    @Override
+public List<MissionRequestDto> showUserMissions(String email){
+
+    User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+    return missionRepository.findByClientUserId(user.getId())
+            .stream()
+            .map(missionDtoMapper::entityToDto)
+            .toList();
+}
+
+
 }

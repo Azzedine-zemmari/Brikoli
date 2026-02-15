@@ -16,5 +16,10 @@ export const routes: Routes = [
     },
     {
         path:"client_dashboard",component:ClientDashboard
-    }   
+    },
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
 ];

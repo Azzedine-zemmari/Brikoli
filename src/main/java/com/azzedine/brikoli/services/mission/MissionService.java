@@ -5,4 +5,5 @@ import java.util.List;
 public interface MissionService {
     MissionRequestDto createMission(MissionRequestDto dto);
     List<MissionRequestDto> showAll();
+    List<MissionRequestDto> showUserMissions(String email);
 }

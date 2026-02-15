@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClientAsideDashboard } from "../../components/client-aside-dashboard/client-aside-dashboard";
 import { MissionResponse } from '../../interfaces/MissionResponse';
 import { MissionService } from '../../services/mission.service';
@@ -9,8 +9,8 @@ import { CommonModule, DatePipe } from '@angular/common';
   templateUrl: './client-dashboard.html',
   styleUrl: './client-dashboard.css',
 })
-export class ClientDashboard {
-  missions: MissionResponse[] = [];
+export class ClientDashboard  implements OnInit{
+  public missions: MissionResponse[] = [];
 
   constructor(private missionService:MissionService){}
 
@@ -25,14 +25,14 @@ export class ClientDashboard {
         // THAT WHY I ASSIGN IT DIRECTLY WITHOUT PUSH *
         this.missions = data;
         console.log("missions : " , this.missions);
-        console.log("data : " + data);
+        console.log("data : " , data);
       },
-       error: (err) => {
+        error: (err) => {
         console.error(err);
       }
     })
   }
-   trackById(index: number, mission: MissionResponse) {
+  trackById(index: number, mission: MissionResponse) {
     return mission.id;
   }
 }

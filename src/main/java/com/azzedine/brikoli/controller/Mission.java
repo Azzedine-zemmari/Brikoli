@@ -1,6 +1,7 @@
 package com.azzedine.brikoli.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,9 +29,10 @@ public class Mission {
         return ResponseEntity.ok(creation);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<MissionRequestDto>> showAll(){
-        List<MissionRequestDto> missions = missionService.showAll();
+    @GetMapping("/user/mission")
+    public ResponseEntity<List<MissionRequestDto>> showAll(Authentication authentication){
+        String email = authentication.getName();
+        List<MissionRequestDto> missions = missionService.showUserMissions(email);
         return ResponseEntity.ok(missions);
     }
 
