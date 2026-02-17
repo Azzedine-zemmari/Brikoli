@@ -12,12 +12,16 @@ import { CommonModule, DatePipe } from '@angular/common';
 export class ClientDashboard  implements OnInit{
   public missions: MissionResponse[] = [];
   public postedmission :number = 0;
+  public encoursmission :number = 0;
+  public completedmission :number = 0;
 
   constructor(private missionService:MissionService, private cdr:ChangeDetectorRef){}
 
   ngOnInit():void{
     this.fetchMissions();
     this.fetchNumberOfPostedMission();
+    this.fetchNumberOfCompletedMission();
+    this.fetchNumberOfEncoursMission()
   }
 
   fetchMissions():void{
@@ -37,6 +41,24 @@ export class ClientDashboard  implements OnInit{
     this.missionService.countPosted().subscribe({
       next:(data) => {
         this.postedmission = data;
+        console.log("postedmission : " , data);
+        this.cdr.detectChanges();
+      }
+    })
+  }
+  fetchNumberOfEncoursMission(){
+    this.missionService.countEncours().subscribe({
+      next:(data) => {
+        this.encoursmission = data;
+        console.log("postedmission : " , data);
+        this.cdr.detectChanges();
+      }
+    })
+  }
+  fetchNumberOfCompletedMission(){
+    this.missionService.countCompleted().subscribe({
+      next:(data) => {
+        this.completedmission = data;
         console.log("postedmission : " , data);
         this.cdr.detectChanges();
       }

@@ -31,4 +31,14 @@ export class MissionService{
             headers: this.getAuthHeaders()
         })
     }
+    countEncours():Observable<number>{
+        return this.http.get<number>(`${environment.apiUrl}/api/mission/en_cours`,{
+            headers: this.getAuthHeaders()
+        })
+    }
+    countCompleted():Observable<number>{
+        return this.http.get<number>(`${environment.apiUrl}/api/mission/completed`,{
+            headers: this.getAuthHeaders()
+        })
+    }
 }
