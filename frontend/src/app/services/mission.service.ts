@@ -21,7 +21,7 @@ export class MissionService{
     }
 
     showAll():Observable<MissionResponse[]>{
-        return this.http.get<MissionResponse[]>(`${environment.apiUrl}/api/mission/all`,{
+        return this.http.get<MissionResponse[]>(`${environment.apiUrl}/api/mission/user`,{
             headers: this.getAuthHeaders()
         })
     }
