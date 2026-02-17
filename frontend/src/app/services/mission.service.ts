@@ -25,4 +25,10 @@ export class MissionService{
             headers: this.getAuthHeaders()
         })
     }
+
+    countPosted():Observable<number>{
+        return this.http.get<number>(`${environment.apiUrl}/api/mission/posted`,{
+            headers: this.getAuthHeaders()
+        })
+    }
 }
