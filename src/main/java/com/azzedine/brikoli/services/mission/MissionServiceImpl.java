@@ -35,9 +35,17 @@ public class MissionServiceImpl implements MissionService {
     private final UserRepository userRepository;
     @Override
     public MissionRequestDto createMission(MissionRequestDto dto){
+        Authentication  authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+
+        User authenticatedUser = userRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found")); 
+
+        ClientProfile client = clientRepository.findByUserId(authenticatedUser.getId())
+            .orElseThrow(() -> new RuntimeException("Client not found"));
+        
         Mission mission = missionDtoMapper.dtoToMission(dto);
 
-        ClientProfile client = clientRepository.findById(dto.client_id()).orElseThrow(() -> new RuntimeException("client not found"));
 
         Category category = categoryRepository.findById(dto.category_id()).orElseThrow(() -> new RuntimeException("category not found"));
 

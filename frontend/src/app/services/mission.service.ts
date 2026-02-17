@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { MissionResponse } from "../interfaces/MissionResponse";
 import { environment } from "../environment";
 import { Injectable } from "@angular/core";
+import { MissionRequest } from "../interfaces/MissionRequest";
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,7 @@ export class MissionService{
     // todo : switch this with interceptors
     private getAuthHeaders():HttpHeaders{
         const token = localStorage.getItem("token");
+        console.log('Token from localStorage:', token);
         return new HttpHeaders({
             'Authorization':`Bearer ${token}`
         })
@@ -24,6 +26,19 @@ export class MissionService{
         return this.http.get<MissionResponse[]>(`${environment.apiUrl}/api/mission/user`,{
             headers: this.getAuthHeaders()
         })
+    }
+    createMission(mission: MissionRequest): Observable<MissionRequest> {
+        const token = localStorage.getItem("token");
+        return this.http.post<MissionRequest>(
+            `${environment.apiUrl}/api/mission/create`,
+            mission,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
     }
 
     countPosted():Observable<number>{

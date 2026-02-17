@@ -1,0 +1,314 @@
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#f97316] text-3xl">handyman</span>
+            <span class="text-xl font-extrabold tracking-tight text-stone-900">Brikoli</span>
+        </a>
+        <nav class="hidden md:flex gap-8">
+            <a href="#" class="text-sm font-medium text-stone-500 hover:text-[#f97316] transition-colors">Find
+                Talent</a>
+            <a href="#" class="text-sm font-medium text-stone-500 hover:text-[#f97316] transition-colors">My
+                Missions</a>
+            <a href="#" class="text-sm font-medium text-stone-500 hover:text-[#f97316] transition-colors">Messages</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <button class="relative p-1.5 text-stone-400 hover:text-stone-700 transition-colors rounded-full">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500 border-2 border-white"></span>
+            </button>
+            <div class="w-9 h-9 rounded-full ring-2 ring-stone-200 bg-cover bg-center"
+                style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzChX_zqFmkmNsCiWNqtwnWBNAmucW2HBA-3XWScoIoof_aOrEs-3lkjS6XVJizFeQQxs0wHLNzffVXfvk_bGNG0yrgjxkQWQVqf0oCG1duAxdx7V1fRGn8JsTx9VFRGT3GakjqVIZzRQ5LLvVJHlwVdj7MNYkvHvYrVW7B395Zn-lcTH5TTckPsJbQ4ACQkVBmh0PaLFWVOIwRaU0pH2Nxr2eata9fKcgQSdTEEGiffSL4wlt7OeYKOaob1xoRYRTTzYy2q3Lg6FT')">
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="flex-1 max-w-7xl mx-auto w-full px-6 py-10">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-1.5 text-sm text-stone-400 mb-8">
+        <a href="#" class="hover:text-[#f97316] transition-colors">Home</a>
+        <span class="material-symbols-outlined text-base leading-none">chevron_right</span>
+        <a href="#" class="hover:text-[#f97316] transition-colors">Missions</a>
+        <span class="material-symbols-outlined text-base leading-none">chevron_right</span>
+        <span class="font-semibold text-stone-800">Create New</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+
+        <!-- FORM COLUMN -->
+        <div class="lg:col-span-2">
+            <!-- Heading -->
+            <div class="mb-6">
+                <h1 class="text-4xl font-black tracking-tight text-stone-900 leading-tight">Post a New Mission</h1>
+                <p class="text-base text-stone-500 mt-2">Connect with top Moroccan professionals in minutes.</p>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
+                <form class="p-8 space-y-8" [formGroup]="missionForm" (ngSubmit)="onSubmit()">
+
+                    <!-- Section 1 -->
+                    <div>
+                        <div class="flex items-center gap-2 pb-3 mb-6 border-b border-stone-100">
+                            <span class="material-symbols-outlined text-[#f97316] text-xl">edit_note</span>
+                            <h3 class="text-base font-bold text-stone-900">Mission Details</h3>
+                        </div>
+
+                        <div class="space-y-5">
+                            <!-- Title -->
+                            <div>
+                                <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="title">
+                                    Mission Title <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="title" formControlName="title"
+                                    placeholder="e.g., Fix a leaking sink in Agdal"
+                                    class="w-full rounded-lg  border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none focus:border-[#f97316] focus:ring-2 focus:ring-orange-100 transition" />
+                            </div>
+
+                            <!-- Category -->
+                            <div>
+                                <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="category">
+                                    Category <span class="text-red-500">*</span>
+                                </label>
+                                <select id="category" formControlName="category_id"
+                                    class="w-full rounded-lg  border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 outline-none focus:border-[#f97316] focus:ring-2 focus:ring-orange-100 transition cursor-pointer appearance-none">
+                                    <option value="" disabled selected>Select a category</option>
+                                    <option value="1">Plumbing</option>
+                                    <option value="2">Electrical</option>
+                                    <option value="3">Moving &amp; Assembly</option>
+                                    <option value="4">Cleaning</option>
+                                    <option value="5">IT Support</option>
+                                </select>
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="description">
+                                    Description <span class="text-red-500">*</span>
+                                </label>
+                                <textarea id="description" formControlName="description" rows="5"
+                                    placeholder="Describe the task in detail. Include any specific requirements, tools needed, or preferred schedule..."
+                                    class="w-full rounded-lg border border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none focus:border-[#f97316] focus:ring-2 focus:ring-orange-100 transition resize-y"
+                                    oninput="document.getElementById('char-count').textContent=this.value.length"></textarea>
+                                <p class="text-xs text-stone-400 text-right mt-1"><span id="char-count">0</span>/500
+                                    characters</p>
+                            </div>
+
+                            <!-- Location -->
+                            <div>
+                                <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="location">
+                                    Location <span class="text-red-500">*</span>
+                                </label>
+                                <div
+                                    class="flex items-center rounded-lg border border-stone-300 bg-stone-50 focus-within:border-[#f97316] focus-within:ring-2 focus-within:ring-orange-100 transition">
+                                    <span
+                                        class="material-symbols-outlined pl-3 text-stone-400 text-xl pointer-events-none flex-shrink-0">location_on</span>
+                                    <input type="text" id="location" formControlName="location"
+                                        placeholder="City, Neighborhood or Zip code"
+                                        class="flex-1 bg-transparent px-3 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none" />
+                                    <button type="button"
+                                        class="pr-3 text-xs font-bold text-[#f97316] hover:text-orange-600 transition flex-shrink-0">Map</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <div>
+                        <div class="flex items-center gap-2 pb-3 mb-6 border-b border-stone-100">
+                            <span class="material-symbols-outlined text-[#f97316] text-xl">settings</span>
+                            <h3 class="text-base font-bold text-stone-900">Logistics &amp; Budget</h3>
+                        </div>
+
+                        <div class="space-y-5">
+                            <!-- Budget + Date -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-stone-800 mb-1.5"
+                                        for="minbudget">Min Budget</label>
+                                    <div
+                                        class="flex items-center rounded-lg border border-stone-300 bg-stone-50 focus-within:border-[#f97316] focus-within:ring-2 focus-within:ring-orange-100 transition">
+                                        <input type="number" formControlName="budget_min" placeholder="0.00"
+                                            class="flex-1 bg-transparent pl-4 pr-2 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none" />
+                                        <span
+                                            class="pr-4 text-sm font-semibold text-stone-400 pointer-events-none flex-shrink-0">MAD</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-stone-800 mb-1.5"
+                                        for="maxbudget">Max Budget</label>
+                                    <div
+                                        class="flex items-center rounded-lg border border-stone-300 bg-stone-50 focus-within:border-[#f97316] focus-within:ring-2 focus-within:ring-orange-100 transition">
+                                        <input type="number" formControlName="budget_max"  placeholder="0.00"
+                                            class="flex-1 bg-transparent pl-4 pr-2 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none" />
+                                        <span
+                                            class="pr-4 text-sm font-semibold text-stone-400 pointer-events-none flex-shrink-0">MAD</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div>
+                                    <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="date">Desired
+                                        Date</label>
+                                    <div
+                                        class="flex items-center rounded-lg border border-stone-300 bg-stone-50 focus-within:border-[#f97316] focus-within:ring-2 focus-within:ring-orange-100 transition">
+                                        <span
+                                            class="material-symbols-outlined pl-3 text-stone-400 text-xl pointer-events-none flex-shrink-0">calendar_month</span>
+                                        <input type="date" id="date" formControlName="date"
+                                            class="flex-1 bg-transparent pl-2 pr-4 py-3 text-sm text-stone-900 outline-none" />
+                                    </div>
+                                </div>
+
+                            <!-- Urgency -->
+                            <div>
+                                <p class="text-sm font-semibold text-stone-800 mb-3">Urgency Level</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+                                    <!-- Normal -->
+                                    <label class="cursor-pointer group">
+                                        <input type="radio" formControlName="urgency" value="NORMAL" class="sr-only peer"
+                                            checked />
+                                        <div
+                                            class="flex items-start gap-3 p-4 rounded-xl border border-stone-200 bg-white peer-checked:border-[#f97316] peer-checked:bg-orange-50 peer-checked:ring-2 peer-checked:ring-orange-100 transition hover:bg-stone-50">
+                                            <div
+                                                class="mt-0.5 w-4 h-4 rounded-full border-2 border-stone-300 peer-checked:border-[#f97316] bg-white flex items-center justify-center flex-shrink-0 group-has-[input:checked]:border-[#f97316] group-has-[input:checked]:bg-[#f97316] transition">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-white hidden group-has-[input:checked]:block">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-semibold text-stone-900">Normal</p>
+                                                <p class="text-xs text-stone-400 mt-0.5">Standard visibility, regular
+                                                    timeline.</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <!-- Urgent -->
+                                    <label class="cursor-pointer group">
+                                        <input type="radio" formControlName="urgency" value="URGENT" class="sr-only peer" />
+                                        <div
+                                            class="flex items-start gap-3 p-4 rounded-xl border border-stone-200 bg-white peer-checked:border-[#f97316] peer-checked:bg-orange-50 peer-checked:ring-2 peer-checked:ring-orange-100 transition hover:bg-stone-50">
+                                            <div
+                                                class="mt-0.5 w-4 h-4 rounded-full border-2 border-stone-300 bg-white flex items-center justify-center flex-shrink-0 group-has-[input:checked]:border-[#f97316] group-has-[input:checked]:bg-[#f97316] transition">
+                                                <div
+                                                    class="w-1.5 h-1.5 rounded-full bg-white hidden group-has-[input:checked]:block">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="flex items-center gap-2 flex-wrap">
+                                                    <p class="text-sm font-semibold text-stone-900">Urgent</p>
+                                                    <span
+                                                        class="inline-flex items-center gap-0.5 text-xs font-bold text-red-600 bg-red-50 border border-red-200 rounded-md px-1.5 py-0.5">
+                                                        <span class="material-symbols-outlined text-xs">bolt</span> FAST
+                                                    </span>
+                                                </div>
+                                                <p class="text-xs text-stone-400 mt-0.5">Highlighted to top
+                                                    professionals.</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Bar -->
+                    <div
+                        class="flex flex-wrap items-center justify-end gap-3 px-8 py-5 border-t border-stone-100 bg-stone-50">
+                        <button type="button"
+                            class="px-4 py-2.5 text-sm font-semibold text-stone-500 hover:text-stone-900 hover:bg-stone-200 rounded-lg transition">
+                            Save Draft
+                        </button>
+                        <button type="button"
+                            class="px-5 py-2.5 text-sm font-semibold text-stone-700 bg-white border border-stone-300 rounded-lg hover:bg-stone-50 transition shadow-sm">
+                            Cancel
+                        </button>
+                        <button type="submit"
+                            class="px-7 py-2.5 text-sm font-bold text-white bg-[#f97316] rounded-lg shadow-md hover:bg-orange-600 hover:-translate-y-px active:translate-y-0 transition-all">
+                            Publish Mission
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="lg:col-span-1 sticky top-24 space-y-4">
+
+            <!-- Tips -->
+            <div class="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
+                <h3 class="flex items-center gap-2 text-base font-bold text-stone-900 mb-5">
+                    <span class="material-symbols-outlined text-amber-400 text-xl">lightbulb</span>
+                    Tips for a great mission
+                </h3>
+                <ul class="space-y-4">
+                    <li class="flex gap-3">
+                        <span
+                            class="flex-shrink-0 w-5 h-5 rounded-full bg-orange-100 text-[#f97316] text-xs font-bold flex items-center justify-center mt-0.5">1</span>
+                        <div>
+                            <p class="text-sm font-semibold text-stone-900">Be Specific</p>
+                            <p class="text-xs text-stone-500 mt-1 leading-relaxed">Describe exactly what needs to be
+                                done. Mention any specific brands or tools required.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-3">
+                        <span
+                            class="flex-shrink-0 w-5 h-5 rounded-full bg-orange-100 text-[#f97316] text-xs font-bold flex items-center justify-center mt-0.5">2</span>
+                        <div>
+                            <p class="text-sm font-semibold text-stone-900">Add Photos</p>
+                            <p class="text-xs text-stone-500 mt-1 leading-relaxed">Missions with photos get 3× more
+                                proposals. You can add them after creating the draft.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-3">
+                        <span
+                            class="flex-shrink-0 w-5 h-5 rounded-full bg-orange-100 text-[#f97316] text-xs font-bold flex items-center justify-center mt-0.5">3</span>
+                        <div>
+                            <p class="text-sm font-semibold text-stone-900">Set a Fair Price</p>
+                            <p class="text-xs text-stone-500 mt-1 leading-relaxed">Check the average pricing for similar
+                                tasks in your area to attract the best pros.</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="mt-5 pt-5 border-t border-stone-100 flex items-center gap-3">
+                    <div class="p-2 bg-stone-50 border border-stone-200 rounded-lg">
+                        <span class="material-symbols-outlined text-stone-500 text-2xl block">support_agent</span>
+                    </div>
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-stone-400">Need Help?</p>
+                        <a href="#" class="text-sm font-bold text-[#f97316] hover:underline">Contact Support</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promo -->
+            <div class="rounded-2xl overflow-hidden relative aspect-[4/3] shadow-sm group">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent z-10"></div>
+                <div class="absolute bottom-4 left-4 right-4 z-20">
+                    <p class="text-white font-extrabold text-base leading-snug">Verified Professionals Only</p>
+                    <p class="text-white/75 text-xs mt-1">All Brikoli pros pass a strict background check.</p>
+                </div>
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmcJLA3RiDR1wL0-uopV_2389ZAQbT0UgdEb3Qfvlxux9FQdSqklST42YrXyXhgCGqw2flKrylyESYfCNI-W8MHO_eXu4-w7sa8O4K6a7Tnn2HtcbVtxr_5f_Yn5UUbTHf5Ly7w_msK4Ps4Ujan5_l4dvYTX0fBaYFyC3ED1SpjDlze4ee4G7fc1BQ_9SR27dfyHxSbo9y0FMnPu2i-zs7JZjrr2ZmuwbiNV_uE2LycwDxA3b_Su2V_iAiiGudSErgzFBAfxgI4Drg"
+                    alt="Professional painter"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-stone-200 bg-white py-6">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="text-sm text-stone-400">© 2023 Brikoli Inc. All rights reserved.</p>
+        <div class="flex gap-6">
+            <a href="#" class="text-sm text-stone-400 hover:text-stone-800 transition">Terms</a>
+            <a href="#" class="text-sm text-stone-400 hover:text-stone-800 transition">Privacy</a>
+            <a href="#" class="text-sm text-stone-400 hover:text-stone-800 transition">Cookies</a>
+        </div>
+    </div>
+</footer>
