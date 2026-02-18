@@ -21,7 +21,7 @@ export class MissionService{
             'Authorization':`Bearer ${token}`
         })
     }
-
+    // show all for user
     showAll():Observable<MissionResponse[]>{
         return this.http.get<MissionResponse[]>(`${environment.apiUrl}/api/mission/user`,{
             headers: this.getAuthHeaders()
@@ -53,6 +53,12 @@ export class MissionService{
     }
     countCompleted():Observable<number>{
         return this.http.get<number>(`${environment.apiUrl}/api/mission/completed`,{
+            headers: this.getAuthHeaders()
+        })
+    }
+    // for professional or admin
+    showMissions():Observable<MissionResponse[]>{
+        return this.http.get<MissionResponse[]>(`${environment.apiUrl}/api/mission/all`,{
             headers: this.getAuthHeaders()
         })
     }
