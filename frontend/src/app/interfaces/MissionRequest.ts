@@ -6,6 +6,7 @@ export interface MissionRequest {
     urgency: urgency;
     budget_min : number;
     budget_max : number;
+    mission_date:string;
 }
 export enum urgency{
     NORMAL,

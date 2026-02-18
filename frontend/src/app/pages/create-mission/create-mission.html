@@ -64,6 +64,11 @@
                                 <input type="text" id="title" formControlName="title"
                                     placeholder="e.g., Fix a leaking sink in Agdal"
                                     class="w-full rounded-lg  border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none focus:border-[#f97316] focus:ring-2 focus:ring-orange-100 transition" />
+                                <div *ngIf="missionForm.get('title')?.touched && missionForm.get('title')?.errors">
+                                    <small *ngIf="missionForm.get('title')?.errors?.['required']">
+                                        Mission title is required
+                                    </small>
+                                </div>
                             </div>
 
                             <!-- Category -->
@@ -80,6 +85,12 @@
                                     <option value="4">Cleaning</option>
                                     <option value="5">IT Support</option>
                                 </select>
+                                <div
+                                    *ngIf="missionForm.get('category_id')?.touched && missionForm.get('category_id')?.errors">
+                                    <small *ngIf="missionForm.get('category_id')?.errors?.['required']">
+                                        Mission category is required
+                                    </small>
+                                </div>
                             </div>
 
                             <!-- Description -->
@@ -93,6 +104,12 @@
                                     oninput="document.getElementById('char-count').textContent=this.value.length"></textarea>
                                 <p class="text-xs text-stone-400 text-right mt-1"><span id="char-count">0</span>/500
                                     characters</p>
+                                <div
+                                    *ngIf="missionForm.get('description')?.touched && missionForm.get('description')?.errors">
+                                    <small *ngIf="missionForm.get('description')?.errors?.['required']">
+                                        Mission description is required
+                                    </small>
+                                </div>
                             </div>
 
                             <!-- Location -->
@@ -110,6 +127,12 @@
                                     <button type="button"
                                         class="pr-3 text-xs font-bold text-[#f97316] hover:text-orange-600 transition flex-shrink-0">Map</button>
                                 </div>
+                                <div
+                                    *ngIf="missionForm.get('location')?.touched && missionForm.get('location')?.errors">
+                                    <small *ngIf="missionForm.get('location')?.errors?.['required']">
+                                        Mission location is required
+                                    </small>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -125,8 +148,8 @@
                             <!-- Budget + Date -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label class="block text-sm font-semibold text-stone-800 mb-1.5"
-                                        for="minbudget">Min Budget</label>
+                                    <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="minbudget">Min
+                                        Budget</label>
                                     <div
                                         class="flex items-center rounded-lg border border-stone-300 bg-stone-50 focus-within:border-[#f97316] focus-within:ring-2 focus-within:ring-orange-100 transition">
                                         <input type="number" formControlName="budget_min" placeholder="0.00"
@@ -136,29 +159,45 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-stone-800 mb-1.5"
-                                        for="maxbudget">Max Budget</label>
+                                    <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="maxbudget">Max
+                                        Budget</label>
                                     <div
                                         class="flex items-center rounded-lg border border-stone-300 bg-stone-50 focus-within:border-[#f97316] focus-within:ring-2 focus-within:ring-orange-100 transition">
-                                        <input type="number" formControlName="budget_max"  placeholder="0.00"
+                                        <input type="number" formControlName="budget_max" placeholder="0.00"
                                             class="flex-1 bg-transparent pl-4 pr-2 py-3 text-sm text-stone-900 placeholder-stone-400 outline-none" />
                                         <span
                                             class="pr-4 text-sm font-semibold text-stone-400 pointer-events-none flex-shrink-0">MAD</span>
                                     </div>
                                 </div>
-                                
+                                <div *ngIf="missionForm.errors?.['budgetInvalid'] 
+            && (missionForm.get('budget_min')?.touched 
+            || missionForm.get('budget_max')?.touched)"> <small>
+                                        Max budget must be greater than Min budget
+                                    </small>
+                                </div>
+
                             </div>
                             <div>
-                                    <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="date">Desired
-                                        Date</label>
-                                    <div
-                                        class="flex items-center rounded-lg border border-stone-300 bg-stone-50 focus-within:border-[#f97316] focus-within:ring-2 focus-within:ring-orange-100 transition">
-                                        <span
-                                            class="material-symbols-outlined pl-3 text-stone-400 text-xl pointer-events-none flex-shrink-0">calendar_month</span>
-                                        <input type="date" id="date" formControlName="date"
-                                            class="flex-1 bg-transparent pl-2 pr-4 py-3 text-sm text-stone-900 outline-none" />
-                                    </div>
+                                <label class="block text-sm font-semibold text-stone-800 mb-1.5" for="date">Desired
+                                    Date</label>
+                                <div
+                                    class="flex items-center rounded-lg border border-stone-300 bg-stone-50 focus-within:border-[#f97316] focus-within:ring-2 focus-within:ring-orange-100 transition">
+                                    <span
+                                        class="material-symbols-outlined pl-3 text-stone-400 text-xl pointer-events-none flex-shrink-0">calendar_month</span>
+                                    <input type="date" id="date" formControlName="mission_date"
+                                        class="flex-1 bg-transparent pl-2 pr-4 py-3 text-sm text-stone-900 outline-none" />
                                 </div>
+                                <div
+                                    *ngIf="missionForm.get('mission_date')?.touched && missionForm.get('mission_date')?.errors">
+                                    <small *ngIf="missionForm.get('mission_date')?.errors?.['required']">
+                                        Mission date is required
+                                    </small>
+
+                                    <small *ngIf="missionForm.get('mission_date')?.errors?.['pastDate']">
+                                        Mission date cannot be in the past
+                                    </small>
+                                </div>
+                            </div>
 
                             <!-- Urgency -->
                             <div>
@@ -167,8 +206,8 @@
 
                                     <!-- Normal -->
                                     <label class="cursor-pointer group">
-                                        <input type="radio" formControlName="urgency" value="NORMAL" class="sr-only peer"
-                                            checked />
+                                        <input type="radio" formControlName="urgency" value="NORMAL"
+                                            class="sr-only peer" checked />
                                         <div
                                             class="flex items-start gap-3 p-4 rounded-xl border border-stone-200 bg-white peer-checked:border-[#f97316] peer-checked:bg-orange-50 peer-checked:ring-2 peer-checked:ring-orange-100 transition hover:bg-stone-50">
                                             <div
@@ -187,7 +226,8 @@
 
                                     <!-- Urgent -->
                                     <label class="cursor-pointer group">
-                                        <input type="radio" formControlName="urgency" value="URGENT" class="sr-only peer" />
+                                        <input type="radio" formControlName="urgency" value="URGENT"
+                                            class="sr-only peer" />
                                         <div
                                             class="flex items-start gap-3 p-4 rounded-xl border border-stone-200 bg-white peer-checked:border-[#f97316] peer-checked:bg-orange-50 peer-checked:ring-2 peer-checked:ring-orange-100 transition hover:bg-stone-50">
                                             <div
@@ -209,7 +249,12 @@
                                             </div>
                                         </div>
                                     </label>
-
+                                    <div
+                                        *ngIf="missionForm.get('urgency')?.touched && missionForm.get('urgency')?.errors">
+                                        <small *ngIf="missionForm.get('urgency')?.errors?.['required']">
+                                            Mission urgency is required
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -218,10 +263,10 @@
                     <!-- Action Bar -->
                     <div
                         class="flex flex-wrap items-center justify-end gap-3 px-8 py-5 border-t border-stone-100 bg-stone-50">
-                        <button type="button"
+                        <!-- <button type="button"
                             class="px-4 py-2.5 text-sm font-semibold text-stone-500 hover:text-stone-900 hover:bg-stone-200 rounded-lg transition">
                             Save Draft
-                        </button>
+                        </button> -->
                         <button type="button"
                             class="px-5 py-2.5 text-sm font-semibold text-stone-700 bg-white border border-stone-300 rounded-lg hover:bg-stone-50 transition shadow-sm">
                             Cancel
@@ -232,7 +277,9 @@
                         </button>
                     </div>
                 </form>
-
+                <div *ngIf="backendError" class="text-red-500 font-bold mt-3.5 ">
+                    {{backendError}}
+                </div>
             </div>
         </div>
 

@@ -1,6 +1,7 @@
 package com.azzedine.brikoli.services.auth;
 
 import java.net.PasswordAuthentication;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -55,6 +56,7 @@ public class UserServiceImpl implements UserService {
         String hash = passwordEncoder.encode(dto.password());
 
         user.setPassword(hash);
+        user.setCreated_at(LocalDateTime.now());
         
         userRepository.save(user);
         if(user.getRole() == Role.PROFESSIONAL){

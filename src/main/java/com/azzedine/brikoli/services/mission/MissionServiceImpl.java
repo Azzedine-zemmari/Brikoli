@@ -1,5 +1,6 @@
 package com.azzedine.brikoli.services.mission;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class MissionServiceImpl implements MissionService {
     private final ClientRepository clientRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    
     @Override
     public MissionRequestDto createMission(MissionRequestDto dto){
         Authentication  authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -51,6 +53,14 @@ public class MissionServiceImpl implements MissionService {
 
         mission.setClient(client);
         mission.setCategory(category);
+        if(dto.budget_max() < dto.budget_min()){
+            throw new IllegalArgumentException("min budget has to be smaller then max budget");
+        }
+        if(dto.mission_date().isBefore(LocalDate.now())){
+                throw new IllegalArgumentException("Mission date cannot be in the past");
+        }
+
+        mission.setMissionDate(dto.mission_date());
         mission.setCreated_at(LocalDateTime.now());
         mission.setMissionStatus(MissionStatus.POSTED);
 
