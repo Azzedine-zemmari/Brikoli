@@ -18,7 +18,7 @@
                 <div class="flex flex-col lg:flex-row gap-8">
 
                     <!-- Sidebar Filters -->
-                    <app-sidebar-filter/>
+                    <app-sidebar-filter (filterChanged)="applyFilters($event)"/>
 
                     <!-- Feed Content -->
                     <div class="flex-1 min-w-0">

@@ -11,7 +11,8 @@ import { MissionService } from '../../services/mission.service';
   styleUrl: './missions.css',
 })
 export class Missions implements OnInit {
-  mission: MissionResponse[] = [];
+  allMissions: MissionResponse[] = []; // full data from API
+  mission: MissionResponse[] = [];     // filtered data
 
   constructor(private missionService: MissionService, private cdr: ChangeDetectorRef) { }
 
@@ -23,6 +24,7 @@ export class Missions implements OnInit {
     this.missionService.showMissions().subscribe({
       next: (data) => {
         this.mission = data;
+        this.allMissions = data;
         this.cdr.detectChanges();
         console.log(this.mission)
       },
@@ -49,4 +51,10 @@ export class Missions implements OnInit {
     }
   }
 
-}
+  applyFilters(filters: { categories: number[], urgency: string[] }) {
+    this.mission = this.allMissions.filter(m => {
+      const categoryMatch = filters.categories.length === 0 || filters.categories.includes(m.category_id);
+      const urgencyMatch = filters.urgency.length === 0 || filters.urgency.includes(m.urgency);
+      return categoryMatch && urgencyMatch;
+    });
+}}

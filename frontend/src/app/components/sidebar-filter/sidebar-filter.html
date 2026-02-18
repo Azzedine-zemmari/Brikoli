@@ -11,7 +11,7 @@
         <div class="space-y-3">
             @for (category of visibleCategories; track $index) {
             <label class="flex items-center gap-3 cursor-pointer group">
-                <input class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" value="{{category.id}}"
+                <input class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" [value]="category.id" (change)="toggleCategory(category.id,$event.target.checked)"
                     type="checkbox" />
                 <span class="text-sm font-medium text-gray-700 group-hover:text-blue-500 transition-colors">
                     {{category.name}}
@@ -41,7 +41,7 @@
                     </div>
                     <span class="text-sm font-medium text-gray-900">Urgent</span>
                 </div>
-                <input class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" type="checkbox" />
+                <input (change)="toggleUrgency('URGENT', $event.target.checked)" value="URGENT" class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" type="checkbox" />
             </label>
             <label
                 class="flex cursor-pointer items-center justify-between rounded-lg border border-blue-300 bg-blue-50 p-3 hover:bg-blue-50 transition-colors">
@@ -49,9 +49,9 @@
                     <div class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
                         <span class="material-symbols-outlined text-[18px]">schedule</span>
                     </div>
-                    <span class="text-sm font-medium text-gray-900">Standard</span>
+                    <span class="text-sm font-medium text-gray-900">Normal</span>
                 </div>
-                <input checked class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400"
+                <input checked (change)="toggleUrgency('NORMAL', $event.target.checked)" value="NORMAL" class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400"
                     type="checkbox" />
             </label>
         </div>
