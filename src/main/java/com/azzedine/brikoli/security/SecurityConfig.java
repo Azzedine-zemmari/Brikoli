@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/user/register","/api/user/login").permitAll()
                         .requestMatchers("/api/mission/create").hasRole("CLIENT")
                         .requestMatchers("/api/mission/user").hasRole("CLIENT")
+                        .requestMatchers(HttpMethod.GET, "/api/mission/all").hasRole("CLIENT")
                         .requestMatchers("/api/mission/posted").hasRole("CLIENT")
                         .requestMatchers("/api/mission/en_cours").hasRole("CLIENT")
                         .requestMatchers("/api/mission/completed").hasRole("CLIENT")

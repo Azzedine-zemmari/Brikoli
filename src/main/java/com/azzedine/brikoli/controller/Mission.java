@@ -39,6 +39,12 @@ public class Mission {
         return ResponseEntity.ok(missions);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<MissionRequestDto>> showMissions(){
+        List<MissionRequestDto> missions = missionService.showAll();
+        return ResponseEntity.ok(missions);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Void> modifierMission(@PathVariable Long id , @RequestBody MissionRequestDto dto){
         missionService.modifierMission(id,dto);
