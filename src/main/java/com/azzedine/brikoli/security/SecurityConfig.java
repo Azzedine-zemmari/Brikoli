@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/mission/create").hasRole("CLIENT")
                         .requestMatchers("/api/mission/user").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.GET, "/api/mission/all").hasRole("CLIENT") // for porfessional and admin not client
+                        .requestMatchers(HttpMethod.GET, "/api/category/all").hasRole("CLIENT") // for porfessional and admin and client
                         .requestMatchers("/api/mission/posted").hasRole("CLIENT")
                         .requestMatchers("/api/mission/en_cours").hasRole("CLIENT")
                         .requestMatchers("/api/mission/completed").hasRole("CLIENT")

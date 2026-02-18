@@ -5,60 +5,28 @@
             tout</button>
     </div>
 
-    <!-- Location -->
-    <div class="rounded-xl bg-white p-5 shadow-sm border border-gray-100">
-        <label class="block mb-2 text-sm font-bold text-gray-900">Localisation</label>
-        <div class="relative">
-            <select
-                class="w-full appearance-none rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500">
-                <option disabled selected value="">Sélectionner une ville</option>
-                <option value="casablanca">Casablanca</option>
-                <option value="rabat">Rabat</option>
-                <option value="marrakech">Marrakech</option>
-                <option value="tanger">Tanger</option>
-            </select>
-            <div class="pointer-events-none absolute right-3 top-3 text-gray-400">
-                <span class="material-symbols-outlined text-[20px]">expand_more</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Budget -->
-
-
     <!-- Categories -->
     <div class="rounded-xl bg-white p-5 shadow-sm border border-gray-100">
         <label class="block mb-3 text-sm font-bold text-gray-900">Catégorie</label>
         <div class="space-y-3">
+            @for (category of visibleCategories; track $index) {
             <label class="flex items-center gap-3 cursor-pointer group">
-                <input class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" type="checkbox" />
-                <span class="text-sm font-medium text-gray-700 group-hover:text-blue-500 transition-colors">Plomberie
-                    &amp; Sanitaire</span>
-            </label>
-            <label class="flex items-center gap-3 cursor-pointer group">
-                <input checked class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400"
+                <input class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" value="{{category.id}}"
                     type="checkbox" />
-                <span
-                    class="text-sm font-medium text-gray-700 group-hover:text-blue-500 transition-colors">Électricité</span>
+                <span class="text-sm font-medium text-gray-700 group-hover:text-blue-500 transition-colors">
+                    {{category.name}}
+                </span>
             </label>
-            <label class="flex items-center gap-3 cursor-pointer group">
-                <input class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" type="checkbox" />
-                <span class="text-sm font-medium text-gray-700 group-hover:text-blue-500 transition-colors">Peinture
-                    &amp; Déco</span>
-            </label>
-            <label class="flex items-center gap-3 cursor-pointer group">
-                <input class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" type="checkbox" />
-                <span
-                    class="text-sm font-medium text-gray-700 group-hover:text-blue-500 transition-colors">Jardinage</span>
-            </label>
-            <label class="flex items-center gap-3 cursor-pointer group">
-                <input class="h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400" type="checkbox" />
-                <span
-                    class="text-sm font-medium text-gray-700 group-hover:text-blue-500 transition-colors">Menuiserie</span>
-            </label>
+            }
         </div>
-        <button class="mt-4 text-xs font-semibold text-blue-500 hover:underline">+ Voir
-            plus</button>
+
+        <!-- Show button only if there are more categories -->
+        @if(visibleCount < categories.length){ <button class="mt-4 text-xs font-semibold text-blue-500 hover:underline"
+            (click)="showMore()">
+            + Voir plus
+            </button>
+            }
+
     </div>
 
     <!-- Urgency -->
