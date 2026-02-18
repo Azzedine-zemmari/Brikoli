@@ -1,0 +1,238 @@
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden" style="font-family: 'Inter', sans-serif;">
+
+        <!-- Header -->
+        <app-professional-header/>
+
+        <!-- Main -->
+        <main class="flex-1 px-4 lg:px-10 py-8 bg-gray-50">
+            <div class="mx-auto max-w-[1280px]">
+
+                <!-- Page Heading -->
+                <div class="mb-8">
+                    <h1 class="text-3xl lg:text-4xl font-black tracking-tight text-gray-900 mb-2">Trouvez votre
+                        prochaine mission</h1>
+                    <p class="text-gray-500 text-base lg:text-lg">Des opportunités adaptées à vos compétences au Maroc.
+                    </p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-8">
+
+                    <!-- Sidebar Filters -->
+                    <app-sidebar-filter/>
+
+                    <!-- Feed Content -->
+                    <div class="flex-1 min-w-0">
+                        <!-- Controls -->
+                        <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+                            <p class="text-sm font-medium text-gray-500"><span class="font-bold text-gray-900">42</span>
+                                missions trouvées</p>
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-sm text-gray-500 hidden sm:block">Trier par:</span>
+                                    <div class="relative">
+                                        <select
+                                            class="appearance-none rounded-lg border border-gray-200 bg-white py-2 pl-3 pr-8 text-sm font-medium shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                                            <option>Plus récent</option>
+                                            <option>Budget élevé</option>
+                                            <option>Proximité</option>
+                                        </select>
+                                        <div class="pointer-events-none absolute right-2 top-2 text-gray-500">
+                                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cards Grid -->
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+                            <!-- Card 1 Urgent -->
+                            <div
+                                class="group flex flex-col justify-between rounded-xl bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-gray-100 h-full">
+                                <div>
+                                    <div class="mb-3 flex items-start justify-between">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-600 ring-1 ring-inset ring-red-200">
+                                            <span class="material-symbols-outlined text-[14px]">bolt</span>Urgent
+                                        </span>
+                                        <span class="text-xs font-medium text-gray-400">20 min</span>
+                                    </div>
+                                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-2">Réparation fuite d'eau
+                                        cuisine</h3>
+                                    <div class="mb-4 flex flex-wrap gap-y-2 text-sm text-gray-500">
+                                        <div class="flex items-center gap-1 mr-4">
+                                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                            <span class="truncate max-w-[120px]">Maarif, Casablanca</span>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[18px]">payments</span>
+                                            <span class="font-semibold text-gray-800">200 - 300 MAD</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-5 text-sm leading-relaxed text-gray-500 line-clamp-2">Besoin urgent
+                                        d'un plombier pour réparer une fuite sous l'évier de la cuisine. L'eau coule
+                                        beaucoup.</p>
+                                </div>
+                                <button
+                                    class="w-full rounded-lg bg-blue-500 px-4 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">Postuler</button>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div
+                                class="group flex flex-col justify-between rounded-xl bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-gray-100 h-full">
+                                <div>
+                                    <div class="mb-3 flex items-start justify-between">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-600 ring-1 ring-inset ring-blue-200">Standard</span>
+                                        <span class="text-xs font-medium text-gray-400">2h</span>
+                                    </div>
+                                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-2">Installation
+                                        climatiseur mural</h3>
+                                    <div class="mb-4 flex flex-wrap gap-y-2 text-sm text-gray-500">
+                                        <div class="flex items-center gap-1 mr-4">
+                                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                            <span class="truncate max-w-[120px]">Agdal, Rabat</span>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[18px]">payments</span>
+                                            <span class="font-semibold text-gray-800">400 - 600 MAD</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-5 text-sm leading-relaxed text-gray-500 line-clamp-2">Je cherche un
+                                        technicien pour installer un climatiseur split neuf dans un salon. Matériel
+                                        fourni.</p>
+                                </div>
+                                <button
+                                    class="w-full rounded-lg bg-blue-500 px-4 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">Postuler</button>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div
+                                class="group flex flex-col justify-between rounded-xl bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-gray-100 h-full">
+                                <div>
+                                    <div class="mb-3 flex items-start justify-between">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-600 ring-1 ring-inset ring-blue-200">Standard</span>
+                                        <span class="text-xs font-medium text-gray-400">4h</span>
+                                    </div>
+                                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-2">Peinture chambre
+                                        enfant</h3>
+                                    <div class="mb-4 flex flex-wrap gap-y-2 text-sm text-gray-500">
+                                        <div class="flex items-center gap-1 mr-4">
+                                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                            <span class="truncate max-w-[120px]">Gueliz, Marrakech</span>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[18px]">payments</span>
+                                            <span class="font-semibold text-gray-800">800 - 1200 MAD</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-5 text-sm leading-relaxed text-gray-500 line-clamp-2">Peinture complète
+                                        pour une chambre de 12m2. Murs et plafond. Couleur blanc cassé.</p>
+                                </div>
+                                <button
+                                    class="w-full rounded-lg bg-blue-500 px-4 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">Postuler</button>
+                            </div>
+
+                            <!-- Card 4 Urgent -->
+                            <div
+                                class="group flex flex-col justify-between rounded-xl bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-gray-100 h-full">
+                                <div>
+                                    <div class="mb-3 flex items-start justify-between">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-600 ring-1 ring-inset ring-red-200">
+                                            <span class="material-symbols-outlined text-[14px]">bolt</span>Urgent
+                                        </span>
+                                        <span class="text-xs font-medium text-gray-400">5h</span>
+                                    </div>
+                                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-2">Débouchage
+                                        canalisation</h3>
+                                    <div class="mb-4 flex flex-wrap gap-y-2 text-sm text-gray-500">
+                                        <div class="flex items-center gap-1 mr-4">
+                                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                            <span class="truncate max-w-[120px]">Hay Riad, Rabat</span>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[18px]">payments</span>
+                                            <span class="font-semibold text-gray-800">150 - 250 MAD</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-5 text-sm leading-relaxed text-gray-500 line-clamp-2">Problème
+                                        d'évacuation dans la salle de bain principale. Urgent.</p>
+                                </div>
+                                <button
+                                    class="w-full rounded-lg bg-blue-500 px-4 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">Postuler</button>
+                            </div>
+
+                            <!-- Card 5 -->
+                            <div
+                                class="group flex flex-col justify-between rounded-xl bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-gray-100 h-full">
+                                <div>
+                                    <div class="mb-3 flex items-start justify-between">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-600 ring-1 ring-inset ring-blue-200">Standard</span>
+                                        <span class="text-xs font-medium text-gray-400">1j</span>
+                                    </div>
+                                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-2">Réparation chaise en
+                                        bois</h3>
+                                    <div class="mb-4 flex flex-wrap gap-y-2 text-sm text-gray-500">
+                                        <div class="flex items-center gap-1 mr-4">
+                                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                            <span class="truncate max-w-[120px]">Centre, Tanger</span>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[18px]">payments</span>
+                                            <span class="font-semibold text-gray-800">100 - 150 MAD</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-5 text-sm leading-relaxed text-gray-500 line-clamp-2">Deux chaises de
+                                        salle à manger avec pieds instables. Besoin de menuisier.</p>
+                                </div>
+                                <button
+                                    class="w-full rounded-lg bg-blue-500 px-4 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">Postuler</button>
+                            </div>
+
+                            <!-- Card 6 -->
+                            <div
+                                class="group flex flex-col justify-between rounded-xl bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md border border-gray-100 h-full">
+                                <div>
+                                    <div class="mb-3 flex items-start justify-between">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-600 ring-1 ring-inset ring-blue-200">Standard</span>
+                                        <span class="text-xs font-medium text-gray-400">1j</span>
+                                    </div>
+                                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-2">Entretien jardin villa
+                                    </h3>
+                                    <div class="mb-4 flex flex-wrap gap-y-2 text-sm text-gray-500">
+                                        <div class="flex items-center gap-1 mr-4">
+                                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                                            <span class="truncate max-w-[120px]">Bouskoura, Casa</span>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[18px]">payments</span>
+                                            <span class="font-semibold text-gray-800">400 - 500 MAD</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-5 text-sm leading-relaxed text-gray-500 line-clamp-2">Tonte de pelouse,
+                                        taille de haies et nettoyage général. Surface 100m2.</p>
+                                </div>
+                                <button
+                                    class="w-full rounded-lg bg-blue-500 px-4 py-2.5 text-center text-sm font-bold text-white transition-colors hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-200">Postuler</button>
+                            </div>
+
+                        </div>
+
+                        <!-- Load More -->
+                        <div class="mt-10 flex justify-center">
+                            <button
+                                class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-6 py-3 text-sm font-bold text-gray-900 shadow-sm transition-colors hover:bg-gray-50">
+                                <span class="material-symbols-outlined">refresh</span>
+                                Charger plus de missions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>  
