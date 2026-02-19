@@ -1,15 +1,21 @@
 package com.azzedine.brikoli.services.mission;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.azzedine.brikoli.dto.MissionRequestDto;
 import com.azzedine.brikoli.mapper.MissionDtoMapper;
@@ -36,7 +42,7 @@ public class MissionServiceImpl implements MissionService {
     private final UserRepository userRepository;
     
     @Override
-    public MissionRequestDto createMission(MissionRequestDto dto){
+    public MissionRequestDto createMission(MissionRequestDto dto,MultipartFile image){
         Authentication  authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
 
@@ -59,6 +65,23 @@ public class MissionServiceImpl implements MissionService {
         if(dto.mission_date().isBefore(LocalDate.now())){
                 throw new IllegalArgumentException("Mission date cannot be in the past");
         }
+
+       if (image != null && !image.isEmpty()) {
+    try {
+        String uploadDir = "uploads/";
+        String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
+        Path filePath = Paths.get(uploadDir + fileName);
+
+        Files.createDirectories(filePath.getParent());
+        Files.write(filePath, image.getBytes());
+
+        mission.setImageName(fileName);
+
+    } catch (IOException e) {
+        throw new RuntimeException("Failed to store image", e);
+    }
+}
+
 
         mission.setMissionDate(dto.mission_date());
         mission.setCreated_at(LocalDateTime.now());

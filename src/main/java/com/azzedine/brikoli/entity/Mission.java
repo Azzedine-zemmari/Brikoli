@@ -58,4 +58,6 @@ public class Mission {
     private List<Message> messages;
 
     private LocalDate missionDate;
+
+    private String imageName;
 }

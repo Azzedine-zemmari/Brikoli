@@ -1,5 +1,6 @@
 package com.azzedine.brikoli.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.azzedine.brikoli.dto.MissionRequestDto;
 import com.azzedine.brikoli.enums.MissionStatus;
@@ -26,11 +29,15 @@ public class Mission {
     private MissionService missionService;
 
 
-    @PostMapping("/create")
-    public ResponseEntity<MissionRequestDto> createMission(@RequestBody MissionRequestDto dto){
-        MissionRequestDto creation = missionService.createMission(dto);
-        return ResponseEntity.ok(creation);
-    }
+   @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+public ResponseEntity<MissionRequestDto> createMission(
+        @RequestPart("mission") MissionRequestDto dto,
+        @RequestPart(value = "image",required = false) MultipartFile image
+) {
+    MissionRequestDto creation = missionService.createMission(dto, image);
+    return ResponseEntity.ok(creation);
+}
+
 
     @GetMapping("/user")
     public ResponseEntity<List<MissionRequestDto>> showAll(Authentication authentication){

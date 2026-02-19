@@ -4,8 +4,10 @@ import com.azzedine.brikoli.enums.MissionStatus;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface MissionService {
-    MissionRequestDto createMission(MissionRequestDto dto);
+public MissionRequestDto createMission(MissionRequestDto dto, MultipartFile image)
     List<MissionRequestDto> showAll();
     List<MissionRequestDto> showUserMissions(String email);
     void modifierMission(Long id,MissionRequestDto dto);
