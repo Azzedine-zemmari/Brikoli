@@ -27,15 +27,14 @@ export class MissionService{
             headers: this.getAuthHeaders()
         })
     }
-    createMission(mission: MissionRequest): Observable<MissionRequest> {
+    createMission(formData: FormData): Observable<MissionRequest> {
         const token = localStorage.getItem("token");
         return this.http.post<MissionRequest>(
             `${environment.apiUrl}/api/mission/create`,
-            mission,
+            formData,
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
                 }
             }
         );

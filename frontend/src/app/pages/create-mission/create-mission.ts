@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 export class CreateMission {
   missionForm : FormGroup;
   backendError :string = '';
+  selectedFile: File | null = null;
+
   constructor(private missionService:MissionService,private fb:FormBuilder){
     this.missionForm = this.fb.group({
       title: ['', Validators.required],
@@ -23,7 +25,8 @@ export class CreateMission {
       category_id: ['', Validators.required],
       location:['',Validators.required],
       urgency:['',Validators.required],
-      mission_date:['',[Validators.required,this.futureOrTodayValidator]]
+      mission_date:['',[Validators.required,this.futureOrTodayValidator]],
+      image:[null]
     },{
       validators: this.budgetValidator
     })
@@ -56,9 +59,18 @@ export class CreateMission {
     }
   onSubmit() {
     this.backendError = '';
-    console.log(this.missionForm.value);
-    
-    this.missionService.createMission(this.missionForm.value)
+
+    const formData = new FormData();
+    // blob bach n9dr npasser json mchi plain text 
+    formData.append('mission',new Blob([JSON.stringify(this.missionForm.value)],{
+      type:'application/json',
+    }))
+
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
+
+    this.missionService.createMission(formData)
       .subscribe({
       next: (res) => {
         console.log("Mission created:", res);
@@ -69,4 +81,9 @@ export class CreateMission {
     });
   }
 
+  onFileSelected(event: any) {
+  if (event.target.files.length > 0) {
+    this.selectedFile = event.target.files[0];
+  }
+}
 }
