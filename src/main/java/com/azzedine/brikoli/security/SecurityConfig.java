@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                         .requestMatchers("/api/user/register","/api/user/login").permitAll()
+                        .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers("/api/mission/create").hasRole("CLIENT")
                         .requestMatchers("/api/mission/user").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.GET, "/api/mission/all").hasRole("CLIENT") // for porfessional and admin not client
@@ -38,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/mission/en_cours").hasRole("CLIENT")
                         .requestMatchers("/api/mission/completed").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.PUT,"/api/mission/*").hasRole("CLIENT")
+                        .requestMatchers(HttpMethod.GET, "/api/mission/*").hasRole("CLIENT") 
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

@@ -23,6 +23,9 @@ import com.azzedine.brikoli.repository.CategoryRepository;
 import com.azzedine.brikoli.repository.ClientRepository;
 import com.azzedine.brikoli.repository.MissionRepository;
 import com.azzedine.brikoli.repository.UserRepository;
+
+import io.micrometer.observation.annotation.ObservationKeyValue;
+
 import com.azzedine.brikoli.entity.Category;
 import com.azzedine.brikoli.entity.ClientProfile;
 import com.azzedine.brikoli.entity.Mission;
@@ -166,4 +169,10 @@ public class MissionServiceImpl implements MissionService {
         return missionRepository
             .countByMissionStatusAndClientId(status, client.getId());
     }
+    @Override
+    public MissionRequestDto missionDetails(Long id){
+        Mission mission = missionRepository.findById(id).orElseThrow(() -> new RuntimeException("Mission not found"));
+        return  missionDtoMapper.entityToDto(mission);
+    }
+
 }

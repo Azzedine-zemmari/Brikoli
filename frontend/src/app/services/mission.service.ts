@@ -61,4 +61,10 @@ export class MissionService{
             headers: this.getAuthHeaders()
         })
     }
+
+    getMissionById(id: number):Observable<MissionResponse> {
+        return this.http.get<MissionResponse>(`${environment.apiUrl}/api/mission/${id}`,{
+            headers: this.getAuthHeaders()
+        });
+}
 }

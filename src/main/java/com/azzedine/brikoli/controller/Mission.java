@@ -70,5 +70,8 @@ public ResponseEntity<MissionRequestDto> createMission(
     public ResponseEntity<Long> countCompletedMissions(){
         return ResponseEntity.ok(missionService.countMission(MissionStatus.COMPLETED));
     }
-
+    @GetMapping("/{id}")
+    public ResponseEntity<MissionRequestDto> missionDetails(@PathVariable Long id){
+        return ResponseEntity.ok(missionService.missionDetails(id));
+    }
 }

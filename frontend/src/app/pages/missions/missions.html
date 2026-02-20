@@ -63,9 +63,9 @@
                                         <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-600 ring-1 ring-inset ring-blue-200">Standard</span>
                                         </div>
                                     }
-                                        <span class="text-xs font-medium text-gray-400">{{getTimeAgo(m.created_at)}}</span>
+                                        <span class="text-xs font-medium text-gray-400">{{timeService.getTimeAgo(m.created_at)}}</span>
                                     </div>
-                                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-2">{{m.title}}</h3>
+                                    <h3 [routerLink]="['/mission', m.id]" class="mb-2 text-lg font-bold text-gray-900 line-clamp-2">{{m.title}}</h3>
                                     <div class="mb-4 flex flex-wrap gap-y-2 text-sm text-gray-500">
                                         <div class="flex items-center gap-1 mr-4">
                                             <span class="material-symbols-outlined text-[18px]">location_on</span>

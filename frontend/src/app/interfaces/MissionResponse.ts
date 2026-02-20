@@ -9,5 +9,6 @@ export interface MissionResponse {
     missionStatus: 'COMPLETED' | 'IN_PROGRESS' | 'POSTED';
     budget_max: number | null;
     budget_min: number | null;
-    created_at: string
+    created_at: string,
+    imageName:string
 }

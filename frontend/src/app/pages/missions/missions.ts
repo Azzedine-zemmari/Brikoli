@@ -3,10 +3,12 @@ import { ProfessionalHeader } from "../../components/professional-header/profess
 import { SidebarFilter } from '../../components/sidebar-filter/sidebar-filter';
 import { MissionResponse } from '../../interfaces/MissionResponse';
 import { MissionService } from '../../services/mission.service';
+import { RouterLink } from '@angular/router';
+import { TimeService } from '../../services/time';
 
 @Component({
   selector: 'app-missions',
-  imports: [ProfessionalHeader, SidebarFilter],
+  imports: [ProfessionalHeader, SidebarFilter,RouterLink],
   templateUrl: './missions.html',
   styleUrl: './missions.css',
 })
@@ -14,7 +16,8 @@ export class Missions implements OnInit {
   allMissions: MissionResponse[] = []; // full data from API
   mission: MissionResponse[] = [];     // filtered data
 
-  constructor(private missionService: MissionService, private cdr: ChangeDetectorRef) { }
+  constructor(private missionService: MissionService, private cdr: ChangeDetectorRef ,public timeService:TimeService
+  ) { }
 
   ngOnInit(): void {
     this.fetchMissions();
@@ -33,24 +36,6 @@ export class Missions implements OnInit {
       }
     })
   }
-  getTimeAgo(dateString: string): string {
-    const now = new Date();
-    const created = new Date(dateString);
-
-    const diffMs = now.getTime() - created.getTime();
-    const diffMinutes = Math.floor(diffMs / (1000 * 60));
-    const diffHours = Math.floor(diffMinutes / 60);
-    const diffDays = Math.floor(diffHours / 24);
-
-    if (diffMinutes < 60) {
-      return `${diffMinutes} min ago`;
-    } else if (diffHours < 24) {
-      return `${diffHours} h ago`;
-    } else {
-      return `${diffDays} day(s) ago`;
-    }
-  }
-
   applyFilters(filters: { categories: number[], urgency: string[] }) {
     this.mission = this.allMissions.filter(m => {
       const categoryMatch = filters.categories.length === 0 || filters.categories.includes(m.category_id);

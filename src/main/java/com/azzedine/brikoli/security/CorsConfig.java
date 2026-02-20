@@ -2,7 +2,10 @@ package com.azzedine.brikoli.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import io.micrometer.observation.annotation.ObservationKeyValue;
 
 @Configuration
 public class CorsConfig implements WebMvcConfigurer{
@@ -13,5 +16,11 @@ public class CorsConfig implements WebMvcConfigurer{
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry){
+        registry.addResourceHandler("/uploads/**")
+        .addResourceLocations("file:uploads/");
     }
 }

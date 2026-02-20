@@ -12,4 +12,5 @@ public MissionRequestDto createMission(MissionRequestDto dto, MultipartFile imag
     List<MissionRequestDto> showUserMissions(String email);
     void modifierMission(Long id,MissionRequestDto dto);
     Long countMission(MissionStatus status);
+    MissionRequestDto missionDetails(Long id);
 }
