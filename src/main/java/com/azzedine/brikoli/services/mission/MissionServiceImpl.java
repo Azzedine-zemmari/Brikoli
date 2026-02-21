@@ -184,6 +184,7 @@ public class MissionServiceImpl implements MissionService {
             mission.getUrgency(),
             mission.getImageName(),
             mission.getCategory().getName(),
+            mission.getCreated_at(),
             mission.getClient().getUser().getFirstName(),
             mission.getClient().getUser().getLastName(),
             numberOfMission

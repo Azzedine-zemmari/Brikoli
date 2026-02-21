@@ -7,6 +7,7 @@ import { TimeService } from '../../services/time';
 import { CommonModule } from '@angular/common';
 import { AuthUser } from '../../interfaces/AuthUser';
 import { AuthService } from '../../services/auth.service';
+import { MissionDetailsResponse } from '../../interfaces/MissionDetailsResponse';
 
 @Component({
   selector: 'app-mission-description',
@@ -15,8 +16,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './mission-description.css',
 })
 export class MissionDescription {
-  mission? : MissionResponse;
-  userData! : AuthUser;
+  mission? : MissionDetailsResponse;
   constructor(
     private route: ActivatedRoute,
     private missionService: MissionService,
@@ -26,7 +26,6 @@ export class MissionDescription {
   ) { }
   ngOnInit(): void {
     this.loadData();
-    this.loadUserData();
   }
   loadData(){
     const id = this.route.snapshot.paramMap.get('id');
@@ -40,11 +39,11 @@ export class MissionDescription {
         });
     }
   }
-  loadUserData(){
-    this.authService.authenticatedUser().subscribe(res => {
-      this.userData = res;
-      this.cdr.detectChanges();
-      console.log("user data" , this.userData);
-    })
-  }
+  // loadUserData(){
+  //   this.authService.authenticatedUser().subscribe(res => {
+  //     this.userData = res;
+  //     this.cdr.detectChanges();
+  //     console.log("user data" , this.userData);
+  //   })
+  // }
 }

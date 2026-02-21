@@ -4,6 +4,7 @@ import { MissionResponse } from "../interfaces/MissionResponse";
 import { environment } from "../environment";
 import { Injectable } from "@angular/core";
 import { MissionRequest } from "../interfaces/MissionRequest";
+import { MissionDetailsResponse } from "../interfaces/MissionDetailsResponse";
 
 @Injectable({
     providedIn: 'root'
@@ -62,8 +63,8 @@ export class MissionService{
         })
     }
 
-    getMissionById(id: number):Observable<MissionResponse> {
-        return this.http.get<MissionResponse>(`${environment.apiUrl}/api/mission/${id}`,{
+    getMissionById(id: number):Observable<MissionDetailsResponse> {
+        return this.http.get<MissionDetailsResponse>(`${environment.apiUrl}/api/mission/${id}`,{
             headers: this.getAuthHeaders()
         });
 }
