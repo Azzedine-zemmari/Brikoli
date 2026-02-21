@@ -38,6 +38,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/mission/posted").hasRole("CLIENT")
                         .requestMatchers("/api/mission/en_cours").hasRole("CLIENT")
                         .requestMatchers("/api/mission/completed").hasRole("CLIENT")
+                        .requestMatchers(HttpMethod.GET,"/api/user/userAuthenticated").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.PUT,"/api/mission/*").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.GET, "/api/mission/*").hasRole("CLIENT") 
                         .anyRequest().authenticated())

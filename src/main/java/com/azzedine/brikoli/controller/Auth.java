@@ -13,6 +13,7 @@ import java.util.HashMap;
 import com.azzedine.brikoli.dto.RegisterDto;
 import com.azzedine.brikoli.dto.RequestLoginDto;
 import com.azzedine.brikoli.dto.ResponseLoginDto;
+import com.azzedine.brikoli.dto.ResponseMissionDto;
 import com.azzedine.brikoli.services.auth.UserService;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +38,9 @@ public class Auth {
         ResponseLoginDto result =  userService.login(dto);
         return ResponseEntity.ok(result);
     }
-    @GetMapping("/userAuthenticated")
-    
+    // @GetMapping("/userAuthenticated")
+    // public ResponseEntity<ResponseMissionDto> userAuthenticated(){
+    //     return ResponseEntity.ok(userService.userAuthenticated());
+    // }
 
 }

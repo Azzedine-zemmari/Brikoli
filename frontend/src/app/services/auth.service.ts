@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from "rxjs";
 import { AuthResponse } from "../interfaces/AuthResponse";
 import { environment } from '../environment';
 import { Injectable } from '@angular/core';
 import { RegisterDto } from '../interfaces/RegisterDto';
+import { AuthUser } from '../interfaces/AuthUser';
 
 
 
@@ -38,5 +39,17 @@ export class AuthService {
 
     logout(){
         localStorage.removeItem("token");
+    }
+    authenticatedUser():Observable<AuthUser>{
+        return this.http.get<AuthUser>(`${environment.apiUrl}/api/user/userAuthenticated`,{
+            headers: this.getAuthHeaders()
+        })
+    }
+    private getAuthHeaders():HttpHeaders{
+        const token = localStorage.getItem("token");
+        console.log('Token from localStorage:', token);
+        return new HttpHeaders({
+            'Authorization':`Bearer ${token}`
+        })
     }
 }

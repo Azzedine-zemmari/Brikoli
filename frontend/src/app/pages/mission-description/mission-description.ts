@@ -5,6 +5,8 @@ import { MissionResponse } from '../../interfaces/MissionResponse';
 import { SafeUrlPipe } from '../../safe-url-pipe';
 import { TimeService } from '../../services/time';
 import { CommonModule } from '@angular/common';
+import { AuthUser } from '../../interfaces/AuthUser';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-mission-description',
@@ -14,14 +16,17 @@ import { CommonModule } from '@angular/common';
 })
 export class MissionDescription {
   mission? : MissionResponse;
+  userData! : AuthUser;
   constructor(
     private route: ActivatedRoute,
     private missionService: MissionService,
+    private authService:AuthService,
     public timeService:TimeService,
     private cdr:ChangeDetectorRef
   ) { }
   ngOnInit(): void {
     this.loadData();
+    this.loadUserData();
   }
   loadData(){
     const id = this.route.snapshot.paramMap.get('id');
@@ -34,5 +39,12 @@ export class MissionDescription {
           console.log("mission details " , this.mission);
         });
     }
+  }
+  loadUserData(){
+    this.authService.authenticatedUser().subscribe(res => {
+      this.userData = res;
+      this.cdr.detectChanges();
+      console.log("user data" , this.userData);
+    })
   }
 }

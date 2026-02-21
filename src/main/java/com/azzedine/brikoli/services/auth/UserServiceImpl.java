@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 import com.azzedine.brikoli.dto.RegisterDto;
 import com.azzedine.brikoli.dto.RequestLoginDto;
 import com.azzedine.brikoli.dto.ResponseLoginDto;
-import com.azzedine.brikoli.dto.ResponseUserDto;
+import com.azzedine.brikoli.dto.ResponseMissionDto;
 import com.azzedine.brikoli.mapper.RegisterDtoMapper;
 import com.azzedine.brikoli.repository.ClientRepository;
+import com.azzedine.brikoli.repository.MissionRepository;
 import com.azzedine.brikoli.repository.ProfessionalRepository;
 import com.azzedine.brikoli.repository.UserRepository;
 import com.azzedine.brikoli.security.JWTService;
@@ -30,7 +31,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
- 
+
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -41,16 +42,15 @@ public class UserServiceImpl implements UserService {
     private final JWTService jwtService;
     private final ProfessionalRepository professionalRepository;
     private final ClientRepository clientRepository;
-
-
+    private final MissionRepository missionRepository;
 
     @Override
     @Transactional
-    public void userRegister(RegisterDto dto){
+    public void userRegister(RegisterDto dto) {
         User user = registerDtoMapper.dtoToUser(dto);
 
         Optional<User> isUserExists = userRepository.findByEmail(user.getEmail());
-        if(isUserExists.isPresent()){
+        if (isUserExists.isPresent()) {
             // todo : make a custom exception
             throw new RuntimeException("user already exists");
         }
@@ -59,9 +59,9 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(hash);
         user.setCreated_at(LocalDateTime.now());
-        
+
         userRepository.save(user);
-        if(user.getRole() == Role.PROFESSIONAL){
+        if (user.getRole() == Role.PROFESSIONAL) {
             ProfessionalProfile professional = new ProfessionalProfile();
             professional.setBio("");
             professional.setLocation("");
@@ -70,8 +70,7 @@ public class UserServiceImpl implements UserService {
             professional.setRatingAverage(0.0);
             professional.setUser(user);
             professionalRepository.save(professional);
-        }
-        else{
+        } else {
             ClientProfile clientProfile = new ClientProfile();
             clientProfile.setUser(user);
             clientProfile.setAddress("");
@@ -79,15 +78,14 @@ public class UserServiceImpl implements UserService {
             clientRepository.save(clientProfile);
         }
     }
+
     @Override
     public ResponseLoginDto login(RequestLoginDto dto) {
-            // authentication spring security
-    Authentication authentication = authenticationManager.authenticate(
+        // authentication spring security
+        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         dto.email(),
-                        dto.password()
-                )
-        );
+                        dto.password()));
 
         // get authenticated user
 
@@ -98,21 +96,24 @@ public class UserServiceImpl implements UserService {
         String token = jwtService.generateToken(userDetails);
 
         // get user entity
-        User user = userRepository.findByEmail(dto.email()).orElseThrow(()-> new RuntimeException("user not found"));
-        
-//        UserDto userDto = userDtoMapper.userToDto(user);
+        User user = userRepository.findByEmail(dto.email()).orElseThrow(() -> new RuntimeException("user not found"));
+
+        // UserDto userDto = userDtoMapper.userToDto(user);
 
         return new ResponseLoginDto(token);
     }
-    @Override
-    public ResponseUserDto userAuthenticated(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
 
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("user not found"));
-    
-        return new ResponseUserDto(user.getFirstName(),user.getLastName());
+    // @Override
+    // public ResponseMissionDto userAuthenticated() {
+    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    //     String email = authentication.getName();
 
-    }
-    
+    //     User user = userRepository.findByEmail(email)
+    //             .orElseThrow(() -> new RuntimeException("user not found"));
+
+    //     int missionCount = missionRepository.countMissionsByUserId(user.getId());
+
+    //     return new ResponseMissionDto(user.getFirstName(), user.getLastName(), missionCount);
+    // }
+
 }

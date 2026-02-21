@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.azzedine.brikoli.dto.MissionRequestDto;
+import com.azzedine.brikoli.dto.ResponseMissionDto;
 import com.azzedine.brikoli.enums.MissionStatus;
 import com.azzedine.brikoli.services.mission.MissionService;
 
@@ -71,7 +72,7 @@ public ResponseEntity<MissionRequestDto> createMission(
         return ResponseEntity.ok(missionService.countMission(MissionStatus.COMPLETED));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<MissionRequestDto> missionDetails(@PathVariable Long id){
+    public ResponseEntity<ResponseMissionDto> missionDetails(@PathVariable Long id){
         return ResponseEntity.ok(missionService.missionDetails(id));
     }
 }

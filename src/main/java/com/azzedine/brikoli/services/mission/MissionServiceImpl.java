@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.azzedine.brikoli.dto.MissionRequestDto;
+import com.azzedine.brikoli.dto.ResponseMissionDto;
 import com.azzedine.brikoli.mapper.MissionDtoMapper;
 import com.azzedine.brikoli.repository.CategoryRepository;
 import com.azzedine.brikoli.repository.ClientRepository;
@@ -170,9 +171,23 @@ public class MissionServiceImpl implements MissionService {
             .countByMissionStatusAndClientId(status, client.getId());
     }
     @Override
-    public MissionRequestDto missionDetails(Long id){
-        Mission mission = missionRepository.findById(id).orElseThrow(() -> new RuntimeException("Mission not found"));
-        return  missionDtoMapper.entityToDto(mission);
+    public ResponseMissionDto missionDetails(Long id){
+        Mission mission = missionRepository.findMissionWithClientAndUser(id).orElseThrow(() -> new RuntimeException("mission not found"));
+        Integer numberOfMission = missionRepository.countMissionsByUserId(mission.getClient().getUser().getId());
+        return new ResponseMissionDto(
+            mission.getId(),
+            mission.getTitle(),
+            mission.getDescription(),
+            mission.getBudgetMin(),
+            mission.getBudgetMax(),
+            mission.getLocation(),
+            mission.getUrgency(),
+            mission.getImageName(),
+            mission.getCategory().getName(),
+            mission.getClient().getUser().getFirstName(),
+            mission.getClient().getUser().getLastName(),
+            numberOfMission
+    );
     }
 
 }
