@@ -6,6 +6,7 @@ import { ClientDashboard } from './pages/client-dashboard/client-dashboard';
 import { CreateMission } from './pages/create-mission/create-mission';
 import { Missions } from './pages/missions/missions';
 import { MissionDescription } from './pages/mission-description/mission-description';
+import { Application } from './application/application';
 
 export const routes: Routes = [
     {
@@ -29,6 +30,10 @@ export const routes: Routes = [
     {
         path: 'mission/:id',
         component: MissionDescription
+    },
+    {
+        path:'application',
+        component:Application
     },
     {
         path: '',
