@@ -37,5 +37,7 @@ public class Auth {
         ResponseLoginDto result =  userService.login(dto);
         return ResponseEntity.ok(result);
     }
+    @GetMapping("/userAuthenticated")
+    
 
 }

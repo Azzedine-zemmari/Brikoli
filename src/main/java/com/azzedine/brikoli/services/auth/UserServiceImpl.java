@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.azzedine.brikoli.dto.RegisterDto;
 import com.azzedine.brikoli.dto.RequestLoginDto;
 import com.azzedine.brikoli.dto.ResponseLoginDto;
+import com.azzedine.brikoli.dto.ResponseUserDto;
 import com.azzedine.brikoli.mapper.RegisterDtoMapper;
 import com.azzedine.brikoli.repository.ClientRepository;
 import com.azzedine.brikoli.repository.ProfessionalRepository;
@@ -27,6 +28,7 @@ import com.azzedine.brikoli.enums.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
  
 @Service
@@ -101,6 +103,16 @@ public class UserServiceImpl implements UserService {
 //        UserDto userDto = userDtoMapper.userToDto(user);
 
         return new ResponseLoginDto(token);
+    }
+    @Override
+    public ResponseUserDto userAuthenticated(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("user not found"));
+    
+        return new ResponseUserDto(user.getFirstName(),user.getLastName());
+
     }
     
 }
