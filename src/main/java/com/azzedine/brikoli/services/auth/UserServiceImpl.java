@@ -111,8 +111,6 @@ public class UserServiceImpl implements UserService {
     //     User user = userRepository.findByEmail(email)
     //             .orElseThrow(() -> new RuntimeException("user not found"));
 
-    //     int missionCount = missionRepository.countMissionsByUserId(user.getId());
-
     //     return new ResponseMissionDto(user.getFirstName(), user.getLastName(), missionCount);
     // }
 
