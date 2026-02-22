@@ -1,17 +1,16 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { MissionService } from '../../services/mission.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MissionResponse } from '../../interfaces/MissionResponse';
 import { SafeUrlPipe } from '../../safe-url-pipe';
 import { TimeService } from '../../services/time';
 import { CommonModule } from '@angular/common';
-import { AuthUser } from '../../interfaces/AuthUser';
 import { AuthService } from '../../services/auth.service';
 import { MissionDetailsResponse } from '../../interfaces/MissionDetailsResponse';
 
 @Component({
   selector: 'app-mission-description',
-  imports: [SafeUrlPipe,CommonModule],
+  imports: [SafeUrlPipe,CommonModule,RouterLink],
   templateUrl: './mission-description.html',
   styleUrl: './mission-description.css',
 })
