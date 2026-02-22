@@ -32,7 +32,7 @@ export const routes: Routes = [
         component: MissionDescription
     },
     {
-        path:'application',
+        path:'application/:id',
         component:Application
     },
     {
