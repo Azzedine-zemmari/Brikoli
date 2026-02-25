@@ -1,63 +1,29 @@
-<!DOCTYPE html>
-<html class="light" lang="fr">
+<style>
+    /* Custom styled select */
+    .custom-select-wrapper {
+        position: relative;
+    }
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Brikoli - Authentification</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0d93f2",
-                        "background-light": "#f5f7f8",
-                        "background-dark": "#101b22",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "Noto Sans", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
-    <style>
-        /* Custom styled select */
-        .custom-select-wrapper {
-            position: relative;
-        }
+    .custom-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+        background-position: right 0.75rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+    }
 
-        .custom-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
-            background-position: right 0.75rem center;
-            background-repeat: no-repeat;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-        }
+    .role-option-card {
+        transition: all 0.2s ease;
+    }
 
-        .role-option-card {
-            transition: all 0.2s ease;
-        }
+    .role-option-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+</style>
 
-        .role-option-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-
-<body
-    class="font-display bg-background-light text-[#0d161c] antialiased overflow-x-hidden">
+<body class="font-display bg-background-light text-[#0d161c] antialiased overflow-x-hidden">
     <div class="min-h-screen flex flex-col lg:flex-row">
         <!-- Left Section: Form -->
         <div
@@ -66,19 +32,10 @@
                 <!-- Header/Logo Area -->
                 <div class="flex items-center justify-between mb-8">
                     <div class="flex items-center gap-3 text-[#0d161c]">
-                        <div class="size-8 text-primary">
-                            <svg class="w-full h-full" fill="none" viewbox="0 0 48 48"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
-                                    fill="currentColor"></path>
-                            </svg>
-                        </div>
-                        <h2 class="text-2xl font-bold tracking-tight">Brikoli</h2>
+                        <span class="text-2xl font-black text-blue-600">Brikoli</span>
                     </div>
                     <div class="flex gap-4">
-                        <a class="text-sm font-medium text-gray-500 hover:text-primary"
-                            href="#">Français</a>
+                        <a class="text-sm font-medium text-gray-500 hover:text-primary" href="#">Français</a>
                     </div>
                 </div>
 
@@ -116,8 +73,7 @@
 
                     <!-- Role Selection - SIMPLIFIED WITH SELECT -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900 mb-2"
-                            for="role">
+                        <label class="block text-sm font-medium leading-6 text-gray-900 mb-2" for="role">
                             Je suis...
                         </label>
                         <div class="custom-select-wrapper">
@@ -135,8 +91,7 @@
 
                     <!-- Name -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900"
-                            for="name">Nom</label>
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="name">Nom</label>
                         <div class="mt-2 relative">
                             <input
                                 class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
@@ -146,8 +101,7 @@
 
                     <!-- Prenom -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900"
-                            for="prenom">Prénom</label>
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="prenom">Prénom</label>
                         <div class="mt-2 relative">
                             <input
                                 class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
@@ -157,8 +111,7 @@
 
                     <!-- Phone -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900"
-                            for="tel">Téléphone</label>
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="tel">Téléphone</label>
                         <div class="mt-2 relative">
                             <input
                                 class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
@@ -168,8 +121,8 @@
 
                     <!-- Email -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900"
-                            for="email">Adresse email</label>
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="email">Adresse
+                            email</label>
                         <div class="mt-2">
                             <input autocomplete="email"
                                 class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
@@ -180,8 +133,8 @@
 
                     <!-- Password -->
                     <div>
-                        <label class="block text-sm font-medium leading-6 text-gray-900"
-                            for="password">Mot de passe</label>
+                        <label class="block text-sm font-medium leading-6 text-gray-900" for="password">Mot de
+                            passe</label>
                         <div class="mt-2 relative">
                             <input
                                 class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
@@ -199,12 +152,11 @@
                         <div class="relative flex items-start">
                             <div class="flex h-6 items-center">
                                 <input aria-describedby="diplome-description"
-                                    class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                                    id="diplome" type="checkbox" formControlName="graduated" />
+                                    class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" id="diplome"
+                                    type="checkbox" formControlName="graduated" />
                             </div>
                             <div class="ml-3 text-sm leading-6">
-                                <label class="font-medium text-gray-900 flex items-center gap-1"
-                                    for="diplome">
+                                <label class="font-medium text-gray-900 flex items-center gap-1" for="diplome">
                                     Je suis un professionnel diplômé / certifié
                                     <span class="material-symbols-outlined text-base text-yellow-500"
                                         title="Badge vérifié">verified</span>
@@ -219,7 +171,7 @@
                     <!-- Submit Button -->
                     <div>
                         <button
-                            class="flex w-full justify-center rounded-lg bg-primary px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors"
+                            class="flex w-full justify-center rounded-lg bg-blue-600 px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-blue-600/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors"
                             type="submit">
                             S'inscrire
                         </button>
@@ -287,25 +239,23 @@
             </div>
         </div>
 
-         <!-- Right Section: Image -->
-    <div class="relative hidden flex-1 lg:block">
-        <div
-            class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10 flex flex-col justify-end p-20">
-            <blockquote class="space-y-2">
-                <p class="text-lg font-medium text-white">
-                    "Grâce à Brikoli, j'ai pu développer mon activité et toucher plus de clients. La plateforme
-                    est intuitive et les paiements sont sécurisés."
-                </p>
-                <footer class="text-sm text-gray-300 font-medium">— Fatima Zahra, Plombière à Rabat
-                </footer>
-            </blockquote>
-        </div>
-        <img alt="" class="absolute inset-0 h-full w-full object-cover"
-            data-alt="Professional plumber working on installation"
-            src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&h=900&fit=crop" />
+        <!-- Right Section: Image -->
+        <div class="relative hidden flex-1 lg:block">
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10 flex flex-col justify-end p-20">
+                <blockquote class="space-y-2">
+                    <p class="text-lg font-medium text-white">
+                        "Grâce à Brikoli, j'ai pu développer mon activité et toucher plus de clients. La plateforme
+                        est intuitive et les paiements sont sécurisés."
+                    </p>
+                    <footer class="text-sm text-gray-300 font-medium">— Fatima Zahra, Plombière à Rabat
+                    </footer>
+                </blockquote>
+            </div>
+            <img alt="" class="absolute inset-0 h-full w-full object-cover"
+                data-alt="Professional plumber working on installation"
+                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&h=900&fit=crop" />
         </div>
     </div>
 
 </body>
-
-</html>

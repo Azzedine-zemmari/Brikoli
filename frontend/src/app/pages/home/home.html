@@ -9,7 +9,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-    }
+    }   
 
     .animate-fade-in-up {
         animation: fade-in-up 0.6s ease forwards;
@@ -19,22 +19,7 @@
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
     <!-- Header -->
-    <header class="w-full bg-white border-b border-slate-100 sticky top-0 z-50">
-        <div class="max-w-[1280px] mx-auto px-4 md:px-10 lg:px-20 h-16 flex items-center justify-between">
-            <span class="text-2xl font-black text-blue-600">Brikoli</span>
-            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-                <a href="#" class="hover:text-blue-600 transition-colors">Accueil</a>
-                <a href="#" class="hover:text-blue-600 transition-colors">Comment ça marche</a>
-                <a href="#" class="hover:text-blue-600 transition-colors">Catégories</a>
-            </nav>
-            <div class="flex items-center gap-3">
-                <button
-                    class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Connexion</button>
-                <button
-                    class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">S'inscrire</button>
-            </div>
-        </div>
-    </header>
+    <app-professional-header/>
 
     <!-- Main Content -->
     <main class="flex flex-col flex-1 w-full max-w-[1280px] mx-auto px-4 md:px-10 lg:px-20 py-8">
@@ -99,7 +84,7 @@
         </section>
 
         <!-- Categories Section -->
-        <section class="py-12">
+        <section id="categorie" class="py-12">
             <div class="text-center mb-10">
                 <h2 class="text-2xl font-bold text-[#0d161c] mb-2">Explorez nos catégories</h2>
                 <p class="text-slate-500">Des experts pour chaque besoin</p>
@@ -158,7 +143,7 @@
         </section>
 
         <!-- How it Works Section -->
-        <section class="py-16 my-8 bg-white rounded-3xl px-6 md:px-12 relative overflow-hidden">
+        <section id="comment" class="py-16 my-8 bg-white rounded-3xl px-6 md:px-12 relative overflow-hidden">
             <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full -mr-20 -mt-20 blur-3xl"></div>
             <div class="text-center max-w-2xl mx-auto mb-16">
                 <h2 class="text-[#0d161c] text-3xl font-bold leading-tight mb-4">Comment ça marche ?</h2>

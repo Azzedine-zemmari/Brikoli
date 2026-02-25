@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                         .requestMatchers("/api/user/register","/api/user/login").permitAll()
+                        .requestMatchers("/api/user/userAuthenticated").hasRole("CLIENT")
                         .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers("/api/mission/create").hasRole("CLIENT")
                         .requestMatchers("/api/mission/user").hasRole("CLIENT")
@@ -38,7 +39,6 @@ public class SecurityConfig {
                         .requestMatchers("/api/mission/posted").hasRole("CLIENT")
                         .requestMatchers("/api/mission/en_cours").hasRole("CLIENT")
                         .requestMatchers("/api/mission/completed").hasRole("CLIENT")
-                        .requestMatchers(HttpMethod.GET,"/api/user/userAuthenticated").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.PUT,"/api/mission/*").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.GET, "/api/mission/*").hasRole("CLIENT") 
                         .anyRequest().authenticated())

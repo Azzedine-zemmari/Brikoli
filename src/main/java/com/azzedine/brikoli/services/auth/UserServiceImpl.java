@@ -12,6 +12,7 @@ import com.azzedine.brikoli.dto.RegisterDto;
 import com.azzedine.brikoli.dto.RequestLoginDto;
 import com.azzedine.brikoli.dto.ResponseLoginDto;
 import com.azzedine.brikoli.dto.ResponseMissionDto;
+import com.azzedine.brikoli.dto.UserAuthenticatedDto;
 import com.azzedine.brikoli.mapper.RegisterDtoMapper;
 import com.azzedine.brikoli.repository.ClientRepository;
 import com.azzedine.brikoli.repository.MissionRepository;
@@ -103,15 +104,15 @@ public class UserServiceImpl implements UserService {
         return new ResponseLoginDto(token);
     }
 
-    // @Override
-    // public ResponseMissionDto userAuthenticated() {
-    //     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    //     String email = authentication.getName();
+    @Override
+    public UserAuthenticatedDto userAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
 
-    //     User user = userRepository.findByEmail(email)
-    //             .orElseThrow(() -> new RuntimeException("user not found"));
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("user not found"));
 
-    //     return new ResponseMissionDto(user.getFirstName(), user.getLastName(), missionCount);
-    // }
+        return new UserAuthenticatedDto(user.getFirstName(), user.getLastName());
+    }
 
 }
