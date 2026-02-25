@@ -1,25 +1,27 @@
 <!-- Navigation -->
-<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7eef4] bg-white px-10 py-3 shadow-sm">
-<div class="flex items-center gap-4 text-[#0d161c]">
-<div class="size-8 text-primary">
-<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
-</svg>
-</div>
-<h2 class="text-[#0d161c] text-xl font-bold leading-tight tracking-[-0.015em]">Brikoli</h2>
-</div>
-<div class="hidden lg:flex flex-1 justify-end gap-8">
-<div class="flex items-center gap-9">
-<a class="text-[#0d161c] text-sm font-medium hover:text-primary transition-colors" href="#">Catégories</a>
-<a class="text-[#0d161c] text-sm font-medium hover:text-primary transition-colors" href="#">Comment ça marche</a>
-<a (click)="logout()" class="text-[#0d161c] text-sm font-medium hover:text-primary transition-colors">Déconnexion</a>
-</div>
-<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary/90 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]">
-<span class="truncate">Devenir Brikoleur</span>
-</button>
-</div>
-<!-- Mobile Menu Icon -->
-<button class="lg:hidden text-[#0d161c]">
-<span class="material-symbols-outlined">menu</span>
-</button>
+<header
+    class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7eef4] bg-white px-10 py-3 shadow-sm">
+    <div class="flex items-center gap-4 text-[#0d161c]">
+        <div class="flex items-center gap-2 text-primary">
+            <span class="material-symbols-outlined text-3xl font-bold">handyman</span>
+            <h1 class="text-xl font-black tracking-tight text-slate-900">Brikoli</h1>
+        </div>
+    </div>
+    <div class="hidden lg:flex flex-1 justify-end gap-8">
+        <div class="flex items-center gap-9">
+            <a class="text-[#0d161c] text-sm font-medium hover:text-primary transition-colors" href="#">Catégories</a>
+            <a class="text-[#0d161c] text-sm font-medium hover:text-primary transition-colors" href="#">Comment ça
+                marche</a>
+            <a (click)="logout()"
+                class="text-[#0d161c] text-sm font-medium hover:text-primary transition-colors">Déconnexion</a>
+        </div>
+        <button
+            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-primary/90 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]">
+            <span class="truncate">Devenir Brikoleur</span>
+        </button>
+    </div>
+    <!-- Mobile Menu Icon -->
+    <button class="lg:hidden text-[#0d161c]">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
 </header>
